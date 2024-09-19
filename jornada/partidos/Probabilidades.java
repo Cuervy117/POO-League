@@ -6,8 +6,8 @@ public class Probabilidades {
     private double cotaSuperior;
 
     public Probabilidades(int partidosGanados, int partidosPerdidos, int empates){
-        cotaInferior =2 * Math.log(partidosPerdidos + 1)*Math.exp(-partidosPerdidos);
-        cotaSuperior = Math.log(partidosGanados + 1) + 1;
+        cotaSuperior = Math.log((partidosGanados/(partidosPerdidos + 1)) + 1) + 1;
+        cotaInferior = Math.log(Math.pow(cotaSuperior , 4) + 1) / 4;
     }
 
     public void imprimirCotas(){
