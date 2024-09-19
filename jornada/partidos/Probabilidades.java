@@ -10,9 +10,8 @@ public class Probabilidades {
         cotaInferior = Math.log(Math.pow(cotaSuperior , 4) + 1) / 4;
     }
 
-    public void imprimirCotas(){
-        System.out.println(cotaInferior);
-        System.out.println(cotaSuperior);
+    public long goles(){
+        Random rnd = new Random();
+        return Math.round(rnd.nextDouble(cotaSuperior - cotaInferior) + cotaInferior);
     }
-
 }
