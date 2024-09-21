@@ -26,6 +26,7 @@ public class Archivo{
             }*/     
               for(Entry <Equipo, Integer> entrada : l.puntosPorEquipo.entrySet()){
             escritor.write(entrada.getKey().getNombre());
+            escritor.newLine();
         }
 
             System.out.println("Equipos guardados exitosamente");
