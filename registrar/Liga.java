@@ -6,7 +6,7 @@ public class Liga {
 
     public Liga(String nombre){
         this.nombre = nombre;
-        this.equipos = new ArrayList<Equipo>();
+        this.equipos = new ArrayList<>();
 
     }
 

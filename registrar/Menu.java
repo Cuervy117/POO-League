@@ -6,6 +6,7 @@ public class Menu{
         System.out.println("1) Registrar equipos");
         System.out.println("2) ");
         int opcion = sc.nextInt();
+        sc.nextLine();
         switch (opcion) {
             case 1 ->{
                 String nombre, respuesta; 
@@ -19,9 +20,9 @@ public class Menu{
                     ligaMX.registrarEquipo(equipoCreado);
 
                     System.out.println("¿Quieres seguir registrando equipos? [Si/No]");
-                    respuesta = sc.next();
+                    respuesta = sc.nextLine();
 
-                    if(!respuesta.toLowerCase().equals("si") || !respuesta.toLowerCase().equals("no"))
+                    if(!respuesta.toLowerCase().equals("si") && !respuesta.toLowerCase().equals("no"))
                         System.out.println("Ingresa una respuesta válida");
                     
                 } while (respuesta.toLowerCase().equals("si"));
