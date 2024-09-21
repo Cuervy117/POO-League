@@ -28,11 +28,10 @@ public class Menu{
                     System.out.println("¿Quieres seguir registrando equipos? [Si/No]");
                     respuesta = sc.nextLine();
                     
-                    if(!respuesta.toLowerCase().equals("si") && !respuesta.toLowerCase().equals("no"))
-                        System.out.println("Ingresa una respuesta válida");
+                    if(!respuesta.toLowerCase().equals("si") && !respuesta.toLowerCase().equals("no")) System.out.println("Ingresa una respuesta válida");
 
-                    
                 } while (!respuesta.toLowerCase().equals("no"));
+                Archivo.guardarEquipos(ligaMX);
 
                 System.out.println("Los equipos registrados fueron: ");
                 ligaMX.mostrarEquipos();
