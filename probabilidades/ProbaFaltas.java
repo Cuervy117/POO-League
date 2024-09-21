@@ -1,0 +1,5 @@
+package probabilidades;
+
+class ProbaFaltas{
+    
+}
