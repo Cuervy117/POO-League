@@ -1,35 +1,58 @@
 package equipos;
 import java.util.ArrayList;
+import equipos.jugadores.*;
 
-import equipos.jugadores.*;;
 public class Equipo{
-    private String nombreEquipo;
-    private String estadio;
     private ArrayList<Jugador> jugadores;
-    private int puntos;
-    
+    private String nombre, estadio;
+    private int puntos, partidos;
 
-    public Equipo(String nombreEquipo, String estadio){
-        this.nombreEquipo = nombreEquipo;
+    public Equipo(ArrayList<Jugador> jugadores, String nombre, String estadio){
+        this.jugadores = jugadores;
+        this.nombre = nombre;
         this.estadio = estadio;
     }
 
-    public void agregarJugador(Jugador jugador){
+    // region getters
+    public ArrayList<Jugador> getJugadores(){
+        return jugadores;
+    }
+
+    public String getNombre(){
+        return nombre;
+    }
+
+    public String getEstadio(){
+        return estadio;
+    }
+
+    public int getPuntos(){
+        return puntos;
+    }
+
+    public int getPartidos(){
+        return partidos;
+    }
+    // endregion
+    
+    // region setters
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public void setEstadio(String estadio){
+        this.estadio = estadio;
+    }
+    // endregion
+
+    // region Metodos de clase
+    public void addJugador(Jugador jugador){
         jugadores.add(jugador);
     }
 
-    public void anadirPuntos(int puntos){
+    public void addPuntos(int puntos){
         this.puntos += puntos;
     }
-
-    public void obtenerDatos(){
-        System.out.println(nombreEquipo);
-        System.out.println(estadio);
-        System.out.println(jugadores.toString());
-    }
-
-    public void obtenerPuntos(){
-        System.out.println(puntos);
-    }
+    // endregion
 
 }
