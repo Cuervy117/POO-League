@@ -7,6 +7,8 @@ public class Menu{
         System.out.println("2) ");
         int opcion = sc.nextInt();
         sc.nextLine();
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//limpia pantalla
+
         switch (opcion) {
             case 1 ->{
                 String nombre, respuesta; 
@@ -21,11 +23,12 @@ public class Menu{
 
                     System.out.println("¿Quieres seguir registrando equipos? [Si/No]");
                     respuesta = sc.nextLine();
-
+                    
                     if(!respuesta.toLowerCase().equals("si") && !respuesta.toLowerCase().equals("no"))
                         System.out.println("Ingresa una respuesta válida");
+
                     
-                } while (respuesta.toLowerCase().equals("si"));
+                } while (!respuesta.toLowerCase().equals("no"));
 
                 System.out.println("Los equipos registrados fueron: ");
                 ligaMX.mostrarEquipos();

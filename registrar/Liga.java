@@ -1,22 +1,23 @@
-import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 public class Liga {
     String nombre;
-    ArrayList <Equipo> equipos;
+    TreeMap<Equipo, Integer> puntosPorEquipo; //la llave son los equipos ya que son únicos
 
     public Liga(String nombre){
         this.nombre = nombre;
-        this.equipos = new ArrayList<>();
+        this.puntosPorEquipo = new TreeMap<>();
 
     }
 
     public  void registrarEquipo(Equipo e){
-        this.equipos.add(e);
+        this.puntosPorEquipo.put(e, 0);
     }
 
     public void mostrarEquipos(){
-        for (Equipo e: equipos){
-            System.out.println(e.getNombre());
+        for(Entry <Equipo, Integer> entrada : puntosPorEquipo.entrySet()){
+            System.out.println(entrada.getKey());
         }
 
     }
