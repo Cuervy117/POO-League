@@ -1,5 +1,5 @@
 package jornada.partidos;
-import equiposs.Equipo;
+import equipos.Equipo;
 public class Partido{
     private Equipo visitante;
     private Equipo local;

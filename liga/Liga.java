@@ -1,6 +1,7 @@
 package liga;
 import java.util.ArrayList;
-import equiposs.Equipo;
+
+import equipos.Equipo;
 import jornada.Jornada;
 public class Liga{
     private ArrayList<Equipo> listaEquipos;

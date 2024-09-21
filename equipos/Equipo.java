@@ -1,11 +1,13 @@
-package equiposs;
+package equipos;
 import java.util.ArrayList;
-import equiposs.jugadores.*;;
+
+import equipos.jugadores.*;;
 public class Equipo{
     private String nombreEquipo;
     private String estadio;
     private ArrayList<Jugador> jugadores;
     private int puntos;
+    
 
     public Equipo(String nombreEquipo, String estadio){
         this.nombreEquipo = nombreEquipo;
