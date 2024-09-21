@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Set;
 
 public class Archivo{
 
@@ -17,8 +18,9 @@ public class Archivo{
             }
             Path ruta = directorio.resolve("Equipos.txt"); // Agregamos al directorio creado anteriormente el nombre del archivo
             BufferedWriter escritor = new BufferedWriter(new FileWriter(ruta.toFile(), true));
-
-            escritor.write("");            
+            //aqui va mi codigo
+            Set <Equipo> set = l.puntosPorEquipo.keySet();
+            for(Equipo e: set) escritor.write(e.getNombre());          
 
             System.out.println("Equipos guardados exitosamente");
             escritor.close();

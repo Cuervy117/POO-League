@@ -2,18 +2,22 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu{
-        public static void menu(Scanner sc)throws IOException, InterruptedException{
+        public static void menuPreCampeonato(Scanner sc)throws IOException, InterruptedException{
+
+        Liga ligaMX = new Liga("Liga MX"); //aqui hay que hacerlo diferente, quiero que se puedan crear varias ligas
+
+
         System.out.println("1) Registrar equipos");
-        System.out.println("2) ");
+        System.out.println("2) Editar equipos");
+        System.out.println("3) Generar Calendario");
+        System.out.println("4) Iniciar Campeonato");
         int opcion = sc.nextInt();
-        sc.nextLine();
+        sc.nextLine(); //para consumir el \n
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//limpia pantalla
 
         switch (opcion) {
             case 1 ->{
                 String nombre, respuesta; 
-                Liga ligaMX = new Liga("Liga MX"); //aqui hay que hacerlo diferente
-
                 do {
                     System.out.println("Ingresa el nombre de tu equipo: ");
                     nombre = sc.nextLine();   
