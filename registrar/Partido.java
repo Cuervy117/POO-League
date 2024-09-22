@@ -46,11 +46,11 @@ public class Partido {
         //System.out.println(local.getGolesPorPartido() + " - " + visitante.getGolesPorPartido());
 
         Long golesLocal = local.getGolesPorPartido(), golesVisitante = visitante.getGolesPorPartido();
-        local.setGolesAFavor(golesLocal);
-        local.setGolesEnContra(golesVisitante);
+        local.setGolesAFavor(local.getGolesAFavor() + golesLocal);
+        local.setGolesEnContra(local.getGolesEnContra() + golesVisitante);
 
-        visitante.setGolesAFavor(golesVisitante);
-        visitante.setGolesEnContra(golesLocal);
+        visitante.setGolesAFavor(visitante.getGolesAFavor() + golesVisitante);
+        visitante.setGolesEnContra(visitante.getGolesEnContra() + golesLocal);
         
         if(golesLocal > golesVisitante){
             return 1;
