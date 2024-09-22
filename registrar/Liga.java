@@ -1,7 +1,6 @@
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.Set;
 import java.util.TreeMap;
 
 public class Liga {
@@ -21,13 +20,21 @@ public class Liga {
     }
 
     public void mostrarEquipos(){
-        Set <Equipo> set = puntosPorEquipo.keySet(); //creo un set únicamente de equipos para poderlos ordenar alfabeticamente
+        //Set <Equipo> set = puntosPorEquipo.keySet(); //creo un set únicamente de equipos para poderlos ordenar alfabeticamente
         for(Entry <Equipo, Integer> entrada : puntosPorEquipo.entrySet()){
             System.out.println(entrada.getKey().getNombre() + " " + entrada.getValue());
         }
         /*for(Equipo equipo: set){
             System.out.println(equipo.getNombre() );
         }*/
+
+    }
+
+    public void mostrarTemporadaPorEquipo(){
+        for(Entry <Equipo, Integer> entrada : puntosPorEquipo.entrySet()){
+            Equipo equipo = entrada.getKey();
+            System.out.println(equipo.getNombre() + "\t" + equipo.getVictorias() + "\t" + equipo.getEmpates() + "\t" + equipo.getDerrotas());
+        }
 
     }
 
@@ -63,26 +70,46 @@ public class Liga {
         }    
     }
 
-    public void simularTemporada(){
-        int puntos = 3;
-        int puntosEmpate = 1;
-        for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
-            entrada.getKey().mostrarPartido();
-            if(entrada.getKey().ganadorLocal() == 0){ //caso de empate
-                puntosPorEquipo.put(entrada.getKey().getLocal(), puntosEmpate);
-            }else{
-                if(entrada.getKey().ganadorLocal() == 1){
-                    puntosPorEquipo.put(entrada.getKey().getLocal(), puntos); 
+    public void simularTemporada() {
+        for (Entry<Partido, Integer> entrada : jornadas.entrySet()) {
+            Partido partido = entrada.getKey();
+            Equipo local = partido.getLocal();
+            Equipo visitante = partido.getVisitante();
+    
+            int previosLocal = puntosPorEquipo.getOrDefault(local, 0);
+            int previosVisitante = puntosPorEquipo.getOrDefault(visitante, 0);
+    
+            System.out.println(local.getNombre() + " " + local.getGolesPorPartido() + " - " + visitante.getNombre() + " " + visitante.getGolesPorPartido());
+    
+            switch (partido.ganadorLocal()) {
+                case 0 -> {
+                    // Empate
+                    puntosPorEquipo.put(local, previosLocal + 1);
+                    puntosPorEquipo.put(visitante, previosVisitante + 1);
+                    local.setEmpates(local.getEmpates() + 1);
+                    visitante.setEmpates(visitante.getEmpates() + 1);
                 }
-                else{
-                    puntosPorEquipo.put(entrada.getKey().getVisitante(), puntos);
+                case 1 -> {
+                    // Gana local
+                    puntosPorEquipo.put(local, previosLocal + 3);
+                    local.setVictorias(local.getVictorias() + 1);
+                    visitante.setDerrotas(visitante.getDerrotas() + 1);
+                }
+                case -1 -> {
+                    // Gana visitante
+                    puntosPorEquipo.put(visitante, previosVisitante + 3);
+                    local.setDerrotas(local.getDerrotas() + 1);
+                    visitante.setVictorias(visitante.getVictorias() + 1);
                 }
             }
-            //puntosEmpate += puntosEmpate;
-            //puntos += puntos;
+    
+            local.setRendimiento(local.getVictorias(), local.getDerrotas());
+            visitante.setRendimiento(visitante.getVictorias(), visitante.getDerrotas());
         }
-        mostrarEquipos();   
+        mostrarEquipos();
+        mostrarTemporadaPorEquipo();
     }
+    
 
     /*public void generarCalendario(){
         if(!puntosPorEquipo.isEmpty()){

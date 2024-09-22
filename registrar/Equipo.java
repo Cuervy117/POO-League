@@ -3,14 +3,19 @@ public class Equipo {
     private String nombre;
     private Jugador jugadores;
     private ProbaGoles rendimiento; 
-    private int golesAFavor;
+    private int golesAFavor ;
     private int golesEnContra;
-    private int victorias;
-    private int derrotas;
-    private int empates;
+    private int victorias ;
+    private int derrotas ;
+    private int empates ;
     public Equipo(String nombre){
         this.nombre = nombre;
         this.rendimiento = new ProbaGoles(0, 0);
+        this.golesAFavor = 0;
+        this.golesEnContra = 0;
+        this.victorias = 0;
+        this.empates = 0;
+        this.derrotas = 0;
     }
 
     public String getNombre(){
