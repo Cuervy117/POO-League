@@ -41,7 +41,7 @@ public class Liga {
                 Partido[][] calendario = new Partido[n-1][n/2]; //[filas][columnas]
                 for(int i = 0; i < n-1  ; i ++ ){ //i es para filas
                     for(int j = 0; j < n/2; j ++){ //j es paara columnas
-                        calendario[i][j] = new Partido();
+                        //calendario[i][j] = new Partido();
                         if(l == puntosPorEquipo.size()-1 ){
                             l = 0; //se evalúa que k no sobrepase el número de equipos que hay, de esa forma vamos llenando de forma ordenada y ascendente
                         }
@@ -72,18 +72,16 @@ public class Liga {
                         }
                         
                         l++; //l sigue recorriendo a los equipos 
-                    }
-
-
-                    for(int a = 0; a < n - 1 ; a ++ ){
-                        for(int b = 0;  b < n/2; b ++){
-                            calendario[a][b].mostrarPartido();
-
-                        }
-                    } //i es para filas
-                        
+                    }                        
                     
                 }
+
+                for(int a = 0; a < n - 1 ; a ++ ){
+                    for(int b = 0;  b < n/2; b ++){
+                        calendario[a][b].mostrarPartido();
+
+                    }
+                } //i es para filas
             }else{
                 System.out.println("El numero de equipos no es par");
             }
@@ -98,55 +96,59 @@ public class Liga {
         
     }
 
-    public void generarCalendariov2() {
-        if (!puntosPorEquipo.isEmpty()) {
-            System.out.println("Generando Calendario...");
-            int n = puntosPorEquipo.size();
-            System.out.println("Number of teams: " + n);
-            if (n % 2 == 0) {
-                int l = 0;
-                int v = 0;
-                Partido[][] calendario = new Partido[n - 1][n / 2];
-    
-                for (int i = 0; i < n - 1; i++) {
-                    for (int j = 0; j < n / 2; j++) {
-                        if (l == puntosPorEquipo.size() - 1) {
-                            l = 0;
-                        }
-                        if (v == puntosPorEquipo.size() - 2) {
-                            v = 0;
-                        }
-    
-                        Equipo local = (Equipo) puntosPorEquipo.keySet().toArray()[l];
-                        Equipo visitante = (Equipo) puntosPorEquipo.keySet().toArray()[(n - 2) - v];
-                        Equipo c = (Equipo) puntosPorEquipo.keySet().toArray()[puntosPorEquipo.size() - 1];
-    
-                        if (i % 2 == 1 && j == 0) {
-                            calendario[i][j] = new Partido(c, local);
+public void generarCalendariov2() {
+    if (!puntosPorEquipo.isEmpty()) {
+        System.out.println("Generando Calendario...");
+        // Definir número de equipos participantes, n será la variable
+        int n = puntosPorEquipo.size(); // antes estaba Archivo.contarEquipos()
+        if (n % 2 == 0) { // Procede en caso de que el número de equipos sea par
+            int l = 0; // Variable contadora para almacenar cada equipo local
+            int v = 0; // Variable contadora para almacenar cada equipo visitante
+            System.out.println("n vale " + n);
+            Partido[][] calendario = new Partido[n - 1][n / 2]; // [filas][columnas]
+
+            for (int i = 0; i < n - 1; i++) { // i es para filas
+                for (int j = 0; j < n / 2; j++) { // j es para columnas
+                    if (l == puntosPorEquipo.size() - 1) {
+                        l = 0; // Se evalúa que l no sobrepase el número de equipos que hay
+                    }
+                    if (v == puntosPorEquipo.size() - 2) {
+                        v = 0;
+                    }
+
+                    Equipo local = (Equipo) puntosPorEquipo.keySet().toArray()[l]; // Se obtiene el equipo 'l' del mapa que contiene a los equipos ordenados
+                    Equipo visitante = (Equipo) puntosPorEquipo.keySet().toArray()[(n - 2) - v]; // Se obtiene el equipo visitante
+                    Equipo c = (Equipo) puntosPorEquipo.keySet().toArray()[puntosPorEquipo.size() - 1]; // Este es el último equipo en aparecer
+
+                    if (i % 2 == 1 && j == 0) { // Evalúa si el ciclo está en fila impar y que también se encuentre en la primera columna
+                        calendario[i][j] = new Partido(c, local); // Se asigna el último equipo como local
+                    } else {
+                        if (i % 2 == 0 && j == 0) {
+                            calendario[i][j] = new Partido(local, c); // Se asigna el equipo local y el último equipo como visitante
                         } else {
-                            if (i % 2 == 0 && j == 0) {
-                                calendario[i][j] = new Partido(local, c);
-                            } else {
-                                calendario[i][j] = new Partido(local, visitante);
-                                v++;
-                            }
+                            calendario[i][j] = new Partido(local, visitante); // Se asigna el equipo local y el equipo visitante
+                            v++; // Solamente en los casos donde no nos encontremos en la primera columna
                         }
-                        l++;
                     }
+
+                    l++; // l sigue recorriendo a los equipos
                 }
-    
-                for (int a = 0; a < n - 1; a++) {
-                    for (int b = 0; b < n / 2; b++) {
-                        calendario[a][b].mostrarPartido();
-                    }
+            }
+
+            // Mostrar los partidos generados
+            for (int a = 0; a < n - 1; a++) {
+                for (int b = 0; b < n / 2; b++) {
+                    calendario[a][b].mostrarPartido();
                 }
-            } else {
-                System.out.println("El numero de equipos no es par");
             }
         } else {
-            System.out.println("No has ingresado ningún equipo");
+            System.out.println("El numero de equipos no es par");
         }
+    } else {
+        System.out.println("No has ingresado ningún equipo");
     }
+}
+
     
     
     
