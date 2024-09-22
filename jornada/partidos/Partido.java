@@ -62,19 +62,36 @@ public class Partido{
             minGolesVisitante[minGolesVisitante.length - auxGolesVisitante] = 95;
             auxGolesVisitante--;
         }
+        if(golesLocal > golesVisitante){
+            local.addPuntos(3);
+        }else if(golesVisitante > golesLocal){
+            visitante.addPuntos(3);
+        }else{
+            local.addPuntos(1);
+            visitante.addPuntos(1);
+        }
         local.addPartido();
         visitante.addPartido();
     }
 
     public String mostrarMarcador(){
         String marcador = "Goles Local\tGoles Visitante\n  --" + golesLocal + "--\t\t\t--" + golesVisitante + "--" + "\n";
-        boolean mayor = golesLocal > golesVisitante;
-        int i = mayor? golesVisitante : golesLocal;
-        for(int j = 0; j < ((mayor)? golesLocal:golesVisitante); i++){
-            marcador += mayor? "--" + minGolesLocal[j] + "--" : "" ;
-            marcador += "\t";
-            marcador += "--" + minGolesVisitante[golesVisitante - i] + "--\n";
+        boolean menor = golesLocal <= golesVisitante;
+        int i = menor? golesVisitante : golesLocal;
+        for(int j = 0; j < ((menor)? golesLocal:golesVisitante); j++){
+            marcador += "  --" + minGolesLocal[j] + "--";
+            marcador += "\t\t\t";
+            marcador += "--" + minGolesVisitante[j] + "--\n";
             i--;
+        }
+        while(i > 0){
+            if(menor){
+                marcador += "  \t\t\t--" + minGolesVisitante[golesVisitante - i] + "--";
+                i--;
+            }else{
+                marcador += "  --" + minGolesLocal[golesLocal - i] + "--";
+                i--;
+            }
         }
     
         return marcador;

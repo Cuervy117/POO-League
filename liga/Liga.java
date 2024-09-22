@@ -1,16 +1,17 @@
 package liga;
 import java.util.ArrayList;
-
+import java.util.LinkedHashMap;
 import equipos.Equipo;
 import jornada.Jornada;
+import java.util.LinkedHashSet;
 public class Liga{
-    private ArrayList<Equipo> listaEquipos;
-    private ArrayList<Jornada> listaJornadas;
-    private int numeroDeEquipos = listaEquipos.size();
+    private LinkedHashMap<String, Equipo> equipos;
+    private LinkedHashSet<Jornada> jornadas;
+    private int numeroDeEquipos = equipos.size();
     private boolean campeonatoIniciado = false;
 
     public void registrarEquipo(Equipo equipo){
-        listaEquipos.add(equipo);
+        equipos.put(equipo.getNombre(), equipo);
     }
 
     public void generarCalendario(){
@@ -22,19 +23,22 @@ public class Liga{
     }
 
     public void consultarTabla(){
-        System.out.println(listaEquipos.toString() + numeroDeEquipos);
         System.out.println("Generando Tabla...");
     }
 
-    public void iniciarJornada(){
-
+    public void simularJornada(ArrayList<String> programacion){
+        Jornada j = new Jornada(equipos, programacion);
+        jornadas.add(j);
     }
+    
     public void consultarJornadas(){
         System.out.println("Consultando Jornadas");
-        System.out.println(listaJornadas.toString());
+        System.out.println(jornadas.toString());
     }
 
     public void incluirPlayoff(){
         System.out.println("No se que es esto pibes");
     }
+
+
 }

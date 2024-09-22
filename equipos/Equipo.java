@@ -1,16 +1,20 @@
 package equipos;
 import java.util.ArrayList;
 import equipos.jugadores.*;
+import probabilidades.ProbaGoles;
 
 public class Equipo{
     private ArrayList<Jugador> jugadores;
     private String nombre, estadio;
     private int puntos, partidos;
+    private ProbaGoles goles;
+
 
     public Equipo(ArrayList<Jugador> jugadores, String nombre, String estadio){
         this.jugadores = jugadores;
         this.nombre = nombre;
         this.estadio = estadio;
+        goles = new ProbaGoles(0, 0);
     }
 
     // region getters
@@ -33,6 +37,10 @@ public class Equipo{
     public int getPartidos(){
         return partidos;
     }
+
+    public int getGoles(){
+        return goles.getGoles();
+    }
     // endregion
     
     // region setters
@@ -50,8 +58,13 @@ public class Equipo{
         jugadores.add(jugador);
     }
 
+    public void addPartido(){
+        partidos++;
+    }
+    
     public void addPuntos(int puntos){
         this.puntos += puntos;
+        goles.updateGoles(this.puntos, partidos);
     }
     // endregion
 
