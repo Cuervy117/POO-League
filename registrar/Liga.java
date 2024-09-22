@@ -29,7 +29,7 @@ public class Liga {
 
     }
 
-    public void generarCalendario(){
+    /*public void generarCalendario(){
         if(!puntosPorEquipo.isEmpty()){
             System.out.println("Generando Calendario...");
             //definir numero de equipos participantes, n será la variable
@@ -94,9 +94,9 @@ public class Liga {
         } 
 
         
-    }
+    }*/
 
-public void generarCalendariov2() {
+public void generarCalendario() {
     if (!puntosPorEquipo.isEmpty()) {
         System.out.println("Generando Calendario...");
         // Definir número de equipos participantes, n será la variable

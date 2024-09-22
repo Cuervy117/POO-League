@@ -46,7 +46,7 @@ public class Menu{
             case 3-> {
                 System.out.println("Has elegido la opcion 3");
                 Archivo.guardarEquiposExistentes(ligaMX);
-                ligaMX.generarCalendariov2();
+                ligaMX.generarCalendario();
             }
         }
 
