@@ -148,8 +148,7 @@ public void generarCalendario() {
                     //prueba para almacenar en jornadas
                     jornadas.put(calendario[a][b], a + b);
                     //calendario[a][b].mostrarPartido();
-                    
-                    System.out.println("Se intenta almacenar");
+                
                 }
             }
             mostrarJornadas();
