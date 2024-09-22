@@ -31,7 +31,7 @@ public class Liga {
     }
 
     public void mostrarJornadas(){
-        for(Entry <Equipo, Integer> entrada : jornadas.entrySet()){
+        for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
             System.out.println(entrada.getKey().getNombre() + entrada.getValue());
         }
     }
