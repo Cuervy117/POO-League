@@ -42,15 +42,16 @@ public class Liga {
                 for(int i = 0; i < n - 1 ; i ++ ){ //i es para filas
                     for(int j = 0; j < n/2; j ++){ //j es paara columnas
                         calendario[i][j] = new Partido();
-                        if(l == puntosPorEquipo.size()-2 ){
+                        if(l == puntosPorEquipo.size()-1 ){
                             l = 0; //se evalúa que k no sobrepase el número de equipos que hay, de esa forma vamos llenando de forma ordenada y ascendente
                         }
-                        if (v == puntosPorEquipo.size()-2){
+                        if (v == puntosPorEquipo.size()-1){
                             v = 0;
                         }
 
                         Equipo local = (Equipo) puntosPorEquipo.keySet().toArray()[l]; //se obtiene el equipo 'l' del mapa que contiene a los equipos ordenados
-                        Equipo visitante = (Equipo) puntosPorEquipo.reversed().keySet().toArray()[v+1]; //esto es para los visitantes y se necesita invertir el orden
+                        //Equipo visitante = (Equipo) puntosPorEquipo.reversed().keySet().toArray()[v+1]; //esto es para los visitantes y se necesita invertir el orden
+                        Equipo visitante = (Equipo) puntosPorEquipo.keySet().toArray()[(n-2)-v];
                         Equipo c = (Equipo) puntosPorEquipo.keySet().toArray()[puntosPorEquipo.size()-1]; //este es el último equipo en aparecer
                         if (i % 2 == 1 && j == 0){ //evalua si el ciclo está en fila impar y que también se encuentre en la primer columna
                             calendario[i][j] = new Partido(c); //se asigna el ultimo equipo como local
