@@ -39,13 +39,13 @@ public class Liga {
                 int v = 0; //variable contadora para almacenar cada equipo visitante
                 System.out.println("n vale " + n);
                 Partido[][] calendario = new Partido[n-1][n/2]; //[filas][columnas]
-                for(int i = 0; i < n - 1 ; i ++ ){ //i es para filas
+                for(int i = 0; i < n-1  ; i ++ ){ //i es para filas
                     for(int j = 0; j < n/2; j ++){ //j es paara columnas
                         calendario[i][j] = new Partido();
                         if(l == puntosPorEquipo.size()-1 ){
                             l = 0; //se evalúa que k no sobrepase el número de equipos que hay, de esa forma vamos llenando de forma ordenada y ascendente
                         }
-                        if (v == puntosPorEquipo.size()-1){
+                        if (v == puntosPorEquipo.size()-2){
                             v = 0;
                         }
 
@@ -54,18 +54,18 @@ public class Liga {
                         Equipo visitante = (Equipo) puntosPorEquipo.keySet().toArray()[(n-2)-v];
                         Equipo c = (Equipo) puntosPorEquipo.keySet().toArray()[puntosPorEquipo.size()-1]; //este es el último equipo en aparecer
                         if (i % 2 == 1 && j == 0){ //evalua si el ciclo está en fila impar y que también se encuentre en la primer columna
-                            calendario[i][j] = new Partido(c); //se asigna el ultimo equipo como local
-                            calendario[i][j].setVisitante(local); //se asigna como visitante el equipo obtenido hasta este momento
+                            calendario[i][j] = new Partido(c, local); //se asigna el ultimo equipo como local
+                            //calendario[i][j].setVisitante(local); //se asigna como visitante el equipo obtenido hasta este momento
                         }
                         else{
                             if(i % 2 == 0 && j == 0){
                                 //calendario[i][j].setLocal(local);
-                                calendario[i][j] = new Partido(local);
-                                calendario[i][j].setVisitante(c);
+                                calendario[i][j] = new Partido(local, c);
+                                //calendario[i][j].setVisitante(c);
                             }else{
                                 //calendario[i][j].setLocal(local);
-                                calendario[i][j] = new Partido(local);
-                                calendario[i][j].setVisitante(visitante);
+                                calendario[i][j] = new Partido(local, visitante);
+                                //calendario[i][j].setVisitante(visitante);
                                 v++; //solamente en los casos donde no nos encontremos en la primer columna
                             }
 
@@ -97,6 +97,59 @@ public class Liga {
 
         
     }
+
+    public void generarCalendariov2() {
+        if (!puntosPorEquipo.isEmpty()) {
+            System.out.println("Generando Calendario...");
+            int n = puntosPorEquipo.size();
+            System.out.println("Number of teams: " + n);
+            if (n % 2 == 0) {
+                int l = 0;
+                int v = 0;
+                Partido[][] calendario = new Partido[n - 1][n / 2];
+    
+                for (int i = 0; i < n - 1; i++) {
+                    for (int j = 0; j < n / 2; j++) {
+                        if (l == puntosPorEquipo.size() - 1) {
+                            l = 0;
+                        }
+                        if (v == puntosPorEquipo.size() - 2) {
+                            v = 0;
+                        }
+    
+                        Equipo local = (Equipo) puntosPorEquipo.keySet().toArray()[l];
+                        Equipo visitante = (Equipo) puntosPorEquipo.keySet().toArray()[(n - 2) - v];
+                        Equipo c = (Equipo) puntosPorEquipo.keySet().toArray()[puntosPorEquipo.size() - 1];
+    
+                        if (i % 2 == 1 && j == 0) {
+                            calendario[i][j] = new Partido(c, local);
+                        } else {
+                            if (i % 2 == 0 && j == 0) {
+                                calendario[i][j] = new Partido(local, c);
+                            } else {
+                                calendario[i][j] = new Partido(local, visitante);
+                                v++;
+                            }
+                        }
+                        l++;
+                    }
+                }
+    
+                for (int a = 0; a < n - 1; a++) {
+                    for (int b = 0; b < n / 2; b++) {
+                        calendario[a][b].mostrarPartido();
+                    }
+                }
+            } else {
+                System.out.println("El numero de equipos no es par");
+            }
+        } else {
+            System.out.println("No has ingresado ningún equipo");
+        }
+    }
+    
+    
+    
 
 
 
