@@ -42,10 +42,10 @@ public class Liga {
                 for(int i = 0; i < n - 1 ; i ++ ){ //i es para filas
                     for(int j = 0; j < n/2; j ++){ //j es paara columnas
                         calendario[i][j] = new Partido();
-                        if(l == puntosPorEquipo.size()-2 ){
+                        if(l == puntosPorEquipo.size()-1 ){
                             l = 0; //se evalúa que k no sobrepase el número de equipos que hay, de esa forma vamos llenando de forma ordenada y ascendente
                         }
-                        if (v == puntosPorEquipo.size()-2){
+                        if (v == puntosPorEquipo.size()-1){
                             v = 0;
                         }
 
@@ -65,13 +65,15 @@ public class Liga {
                                 //calendario[i][j].setLocal(local);
                                 calendario[i][j] = new Partido(local);
                                 calendario[i][j].setVisitante(visitante);
-                                v ++; //solamente en los casos donde no nos encontremos en la primer columna
+                                v++; //solamente en los casos donde no nos encontremos en la primer columna
                             }
 
                         }
                         
                         l++; //l sigue recorriendo a los equipos 
                     }
+
+
                     for(int a = 0; a < n - 1 ; a ++ ){
                         for(int b = 0;  b < n/2; b ++){
                             calendario[a][b].mostrarPartido();
