@@ -89,6 +89,8 @@ public class Menu{
             case 4 -> {
                 System.out.println("Simular temporada");
                 liga.simularTemporada();
+                System.out.println("Consulte la tabla General");
+                Archivo.escribirTablaGeneral(liga);
             }
         }
         

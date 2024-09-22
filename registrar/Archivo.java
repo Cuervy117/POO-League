@@ -84,7 +84,35 @@ public class Archivo{
             System.out.println("Error al determinar la ruta del archivo: " + e.getMessage());
         }
         
-}
+    }
+    
+    public static void escribirTablaGeneral(Liga l){
+        try {
+            Path packageActual = Paths.get(Archivo.class.getResource("Archivo.class").toURI()).getParent(); // Obtenemos el directorio del package
+            Path directorio = packageActual.resolve("Equipos"); // Creamos la carpeta en caso de que no existe
+            if (!Files.exists(directorio)) {
+                Files.createDirectories(directorio);
+            }
+            Path ruta = directorio.resolve("Tabla.txt"); // Agregamos al directorio creado anteriormente el nombre del archivo
+            BufferedWriter escritor = new BufferedWriter(new FileWriter(ruta.toFile(), false)); //para que no se amontone, se actualiza con cada ciclo
+            
+            //aqui empieza tu codiguito
+            int i = 1;
+            for(Entry <Equipo, Integer> entrada : l.puntosPorEquipo.entrySet()){
+                Equipo equipo = entrada.getKey();
+                String partidos = equipo.getVictorias() + "\t" + equipo.getEmpates() + "\t" + equipo.getDerrotas();
+                String goles = equipo.getGolesAFavor() + "\t" + equipo.getGolesEnContra() + "\t" + (equipo.getGolesAFavor() - equipo.getGolesEnContra());
+                escritor.write(i + "\t" + equipo.getNombre() + "\t" + partidos + "\t" + goles + "\t" + entrada.getValue());
+                escritor.newLine();
+                i ++;
+            }
+
+            System.out.println("Tabla generada exitosamente");
+            escritor.close();
+        } catch (IOException | URISyntaxException e) {
+            System.out.println("Error al generar la tabla" + e.getMessage());
+        }  
+    }
 
     
     

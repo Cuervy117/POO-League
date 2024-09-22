@@ -44,11 +44,19 @@ public class Partido {
             
         }*/
         //System.out.println(local.getGolesPorPartido() + " - " + visitante.getGolesPorPartido());
-        if(local.getGolesPorPartido() > visitante.getGolesPorPartido()){
+
+        Long golesLocal = local.getGolesPorPartido(), golesVisitante = visitante.getGolesPorPartido();
+        local.setGolesAFavor(golesLocal);
+        local.setGolesEnContra(golesVisitante);
+
+        visitante.setGolesAFavor(golesVisitante);
+        visitante.setGolesEnContra(golesLocal);
+        
+        if(golesLocal > golesVisitante){
             return 1;
         }
         else{
-            if(local.getGolesPorPartido() == visitante.getGolesPorPartido()){
+            if(golesLocal.equals(golesVisitante)){
                 //empate
                 return 0;
             }else{
@@ -56,6 +64,8 @@ public class Partido {
                 return -1;
             }
         }
+        
+
     }
 
 }

@@ -102,7 +102,7 @@ public class Liga {
                     visitante.setVictorias(visitante.getVictorias() + 1);
                 }
             }
-    
+            System.out.println(local.getGolesAFavor());
             local.setRendimiento(local.getVictorias(), local.getDerrotas());
             visitante.setRendimiento(visitante.getVictorias(), visitante.getDerrotas());
         }
