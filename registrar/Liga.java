@@ -36,6 +36,15 @@ public class Liga {
         }
     }
 
+    public void mostrarJornadas(Integer numeroJornada){
+
+        for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
+            if(jornadas.containsValue(numeroJornada)){
+                System.out.println(entrada.getKey().mostrarPartido() + "\t" + entrada.getValue());
+            }
+        }
+    }
+
     /*public void generarCalendario(){
         if(!puntosPorEquipo.isEmpty()){
             System.out.println("Generando Calendario...");

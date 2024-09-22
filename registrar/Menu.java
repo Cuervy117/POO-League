@@ -2,10 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu{
-        public static void menuPreCampeonato(Scanner sc)throws IOException, InterruptedException{
-
-        Liga ligaMX = new Liga("Liga MX"); //aqui hay que hacerlo diferente, quiero que se puedan crear varias ligas
-
+        public static void menuPreCampeonato(Scanner sc, Liga liga)throws IOException, InterruptedException{
 
         System.out.println("1) Registrar equipos");
         System.out.println("2) Editar equipos");
@@ -23,7 +20,7 @@ public class Menu{
                     nombre = sc.nextLine();   
                     
                     Equipo equipoCreado = new Equipo(nombre); //se crea el equipo en cada iteración del do-while con el constructor que requiere el nombre
-                    ligaMX.registrarEquipo(equipoCreado);
+                    liga.registrarEquipo(equipoCreado);
 
                     System.out.println("¿Quieres seguir registrando equipos? [Si/No]");
                     respuesta = sc.nextLine();
@@ -31,10 +28,10 @@ public class Menu{
                     if(!respuesta.toLowerCase().equals("si") && !respuesta.toLowerCase().equals("no")) System.out.println("Ingresa una respuesta válida");
 
                 } while (!respuesta.toLowerCase().equals("no"));
-                Archivo.guardarEquipos(ligaMX);
+                Archivo.guardarEquipos(liga);
 
                 System.out.println("Los equipos registrados fueron: ");
-                ligaMX.mostrarEquipos();
+                liga.mostrarEquipos();
                 
 
             }
@@ -45,10 +42,38 @@ public class Menu{
 
             case 3-> {
                 System.out.println("Has elegido la opcion 3");
-                Archivo.guardarEquiposExistentes(ligaMX);
-                ligaMX.generarCalendario();
+                Archivo.guardarEquiposExistentes(liga);
+                liga.generarCalendario();
+            }
+
+            case 4 -> {
+                System.out.println("Para iniciar el campeonato pulsa enter!");
+                //mostrar tabla inicial
+
             }
         }
 
+    }
+
+    public static void menuPostCampeonato(Scanner sc, Liga liga)throws IOException, InterruptedException{
+        System.out.println("2) Jornadas Anteriores");
+        int opcion = sc.nextInt();
+        sc.nextLine(); //para consumir el \n
+
+        switch(opcion){
+            case 2 -> {
+                //está pensado para mostrar únicamente los partidos de una jornada específica
+                System.out.println("Jornadas de la liga: ");
+                System.out.println(liga.jornadas.values());
+
+                System.out.println("Ingresa la jornada que quieras consultar: ");
+                int numeroJornada = sc.nextInt();
+                sc.nextLine(); //consume el salto de linea
+
+                liga.mostrarJornadas();
+
+            }
+        }
+        
     }
 }
