@@ -1,5 +1,6 @@
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -39,10 +40,27 @@ public class Liga {
     public void mostrarJornadas(Integer numeroJornada){
 
         for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
-            if(jornadas.containsValue(numeroJornada)){
+            if(Objects.equals(jornadas.get(entrada.getKey()), numeroJornada)){
                 System.out.println(entrada.getKey().mostrarPartido() + "\t" + entrada.getValue());
             }
         }
+    }
+
+    public void mostrarRangoJornadas(Integer numeroJornada){
+        for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
+            if(jornadas.get(entrada.getKey()) <= numeroJornada){
+                System.out.println(entrada.getKey().mostrarPartido() + "\t" + entrada.getValue());
+            }else{
+                return;
+            }
+        }
+    }
+    public void mostrarJornadasPorEquipo(String nombreEquipo){
+        for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
+            if(entrada.getKey().getLocal().getNombre().equals(nombreEquipo) || entrada.getKey().getVisitante().getNombre().equals(nombreEquipo)){
+                System.out.println(entrada.getKey().mostrarPartido() + entrada.getValue());
+            }
+        }    
     }
 
     /*public void generarCalendario(){
@@ -125,10 +143,10 @@ public void generarCalendario() {
 
             for (int i = 0; i < n - 1; i++) { // i es para filas
                 for (int j = 0; j < n / 2; j++) { // j es para columnas
-                    if (l == puntosPorEquipo.size() - 1) {
+                    if (l > puntosPorEquipo.size() - 2) {
                         l = 0; // Se evalúa que l no sobrepase el número de equipos que hay
                     }
-                    if (v == puntosPorEquipo.size() - 2) {
+                    if (v > puntosPorEquipo.size() - 2) {
                         v = 0;
                     }
 
@@ -169,6 +187,7 @@ public void generarCalendario() {
     }
     
 }
+
 
     
     

@@ -29,4 +29,12 @@ public class Partido {
     public String mostrarPartido(){
         return this.local.getNombre() + " - " + this.visitante.getNombre();
     }
+
+    public Equipo getLocal(){
+        return local;
+    }
+
+    public Equipo getVisitante(){
+        return visitante;
+    }
 }

@@ -57,6 +57,7 @@ public class Menu{
 
     public static void menuPostCampeonato(Scanner sc, Liga liga)throws IOException, InterruptedException{
         System.out.println("2) Jornadas Anteriores");
+        System.out.println("3) Mostrar jornadas de un equipo");
         int opcion = sc.nextInt();
         sc.nextLine(); //para consumir el \n
 
@@ -70,8 +71,19 @@ public class Menu{
                 int numeroJornada = sc.nextInt();
                 sc.nextLine(); //consume el salto de linea
 
-                liga.mostrarJornadas();
+                liga.mostrarJornadas(numeroJornada);
 
+                //ahora está pensado para mostrar el rango desde la primera jornada hasta la jornada deseada
+                System.out.println("Ingresa la jornada hasta la que quieras consultar. El rango comienza desde la primera.");
+                int limiteJornada = sc.nextInt();
+                sc.nextLine(); //consume salto de linea
+                liga.mostrarRangoJornadas(limiteJornada);
+            }
+            case 3->{
+
+                System.out.println("Ingresa el nombre del equipo que quieras ver sus jornadas");
+                String nombreEquipo = sc.nextLine();
+                liga.mostrarJornadasPorEquipo(nombreEquipo);
             }
         }
         
