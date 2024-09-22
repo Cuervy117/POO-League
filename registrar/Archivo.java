@@ -98,6 +98,8 @@ public class Archivo{
             
             //aqui empieza tu codiguito
             int i = 1;
+            //ordenar los equipos por puntaje
+            
             for(Entry <Equipo, Integer> entrada : l.puntosPorEquipo.entrySet()){
                 Equipo equipo = entrada.getKey();
                 String partidos = equipo.getVictorias() + "\t" + equipo.getEmpates() + "\t" + equipo.getDerrotas();
