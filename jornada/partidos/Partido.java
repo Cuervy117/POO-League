@@ -3,11 +3,17 @@ import equipos.Equipo;
 import java.util.Random;
 
 public class Partido{
+    // Atributos
     private Equipo local, visitante;
     private int golesLocal, golesVisitante;
     private int[] minGolesLocal;
     private int[] minGolesVisitante;
     
+    /**
+     * Constructor de la clase partido
+     * @param local El equipo local
+     * @param visitante El equipo visitante
+     */
     public Partido(Equipo local, Equipo visitante){
         this.local = local;
         this.visitante = visitante;
@@ -37,6 +43,10 @@ public class Partido{
     }
     // endregion
 
+    // region Metodos de clase
+    /**
+     * Metodo que simula un partido entre los equipos local y visitante
+     */
     public void simularPartido(){
         int auxGolesLocal = golesLocal, auxGolesVisitante = golesVisitante;
         minGolesLocal = new int[golesLocal];
@@ -44,14 +54,14 @@ public class Partido{
 
         Random rn = new Random();
         for(int i = 0; i < 90; i += 10){
-        if (rn.nextInt(10) < 2 && auxGolesLocal > 0) {
-            minGolesLocal[minGolesLocal.length - auxGolesLocal] = rn.nextInt(10) + i;
-            auxGolesLocal--;
-        }
-        if (rn.nextInt(10) > 8 && auxGolesVisitante > 0) {
-            minGolesVisitante[minGolesVisitante.length - auxGolesVisitante] = rn.nextInt(10) + i;
-            auxGolesVisitante--;
-        }
+            if (rn.nextInt(10) < 2 && auxGolesLocal > 0) {
+                minGolesLocal[minGolesLocal.length - auxGolesLocal] = rn.nextInt(10) + i;
+                auxGolesLocal--;
+            }
+            if (rn.nextInt(10) > 8 && auxGolesVisitante > 0) {
+                minGolesVisitante[minGolesVisitante.length - auxGolesVisitante] = rn.nextInt(10) + i;
+                auxGolesVisitante--;
+            }
         }
 
         while(auxGolesLocal > 0){
@@ -62,6 +72,7 @@ public class Partido{
             minGolesVisitante[minGolesVisitante.length - auxGolesVisitante] = 95;
             auxGolesVisitante--;
         }
+
         if(golesLocal > golesVisitante){
             local.addPuntos(3);
         }else if(golesVisitante > golesLocal){
@@ -70,10 +81,15 @@ public class Partido{
             local.addPuntos(1);
             visitante.addPuntos(1);
         }
+
         local.addPartido();
         visitante.addPartido();
     }
 
+    /**
+     * Metodo(temporal) que genera un marcador con los goles y minutos de cada equipo
+     * @return Cadena de texto con el marcador 
+     */
     public String mostrarMarcador(){
         String marcador = "Goles Local\tGoles Visitante\n  --" + golesLocal + "--\t\t\t--" + golesVisitante + "--" + "\n";
         boolean menor = golesLocal <= golesVisitante;
@@ -96,5 +112,5 @@ public class Partido{
     
         return marcador;
     }
-    
+    // endregion
 }
