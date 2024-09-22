@@ -32,7 +32,7 @@ public class Liga {
 
     public void mostrarJornadas(){
         for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
-            System.out.println( entrada.getKey().mostrarPartido() + entrada.getValue());
+            System.out.println( entrada.getKey().mostrarPartido() + "\t" + entrada.getValue());
         }
     }
 
@@ -146,7 +146,7 @@ public void generarCalendario() {
             for (int a = 0; a < n - 1; a++) {
                 for (int b = 0; b < n / 2; b++) {
                     //prueba para almacenar en jornadas
-                    jornadas.put(calendario[a][b], a + b);
+                    jornadas.put(calendario[a][b], a + 1); //a representa el valor de la jornada disputada
                     //calendario[a][b].mostrarPartido();
                 
                 }
