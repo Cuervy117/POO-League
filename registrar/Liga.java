@@ -10,17 +10,18 @@ public class Liga {
 
     public Liga(String nombre){
         this.nombre = nombre;
-        this.puntosPorEquipo = new TreeMap<>((Equipo e1, Equipo e2) ->{
-            int puntos = puntosPorEquipo.get(e1) - puntosPorEquipo.get(e2); //obtiene un número que servirá como retorno para el Comparator
-            if(puntos == 0){ //si los puntos de 2 equipos son los mismos...
-                int difGolesE1 = e1.getGolesAFavor() - e1.getGolesEnContra();
-                int difGolesE2 =  e2.getGolesAFavor() - e2.getGolesEnContra();
-                return difGolesE1 - difGolesE2;
-            }else{
-                return puntos;
+        this.puntosPorEquipo = new TreeMap<>((Equipo e1, Equipo e2) -> {
+            int puntos1 = puntosPorEquipo.getOrDefault(e1, 0);
+            int puntos2 = puntosPorEquipo.getOrDefault(e2, 0);
+            int puntosComparison = Integer.compare(puntos2, puntos1); // Orden descendente por puntos
+            if (puntosComparison != 0) {
+                return puntosComparison;
+            } else {
+                Integer difGoles1 = e1.getGolesAFavor() - e1.getGolesEnContra();
+                Integer difGoles2 = e2.getGolesAFavor() - e2.getGolesEnContra();
+                return difGoles2.compareTo(difGoles1); // Orden descendente por diferencia de goles
             }
-        }  
-        );
+        });
         this.jornadas = new LinkedHashMap<>();
     }
 
