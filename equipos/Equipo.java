@@ -9,7 +9,12 @@ public class Equipo{
     private int puntos, partidos;
     private ProbaGoles goles;
 
-
+    /**
+     * Constructor para la clase Equipo
+     * @param jugadores ArrayList de jugadores pertenecientes al equipo
+     * @param nombre El nombre del equipo
+     * @param estadio El nombre de su estadio
+     */
     public Equipo(ArrayList<Jugador> jugadores, String nombre, String estadio){
         this.jugadores = jugadores;
         this.nombre = nombre;
@@ -54,14 +59,25 @@ public class Equipo{
     // endregion
 
     // region Metodos de clase
+    /**
+     * Metodo para agregar un jugador a un equipo
+     * @param jugador El jugador a agregar
+     */
     public void addJugador(Jugador jugador){
         jugadores.add(jugador);
     }
 
+    /**
+     * Metodo que incrementa en uno los partidos jugados por el equipo
+     */
     public void addPartido(){
         partidos++;
     }
     
+    /**
+     * Metodo que actualiza los puntos del equipo
+     * @param puntos Los puntos ganados en un partido
+     */
     public void addPuntos(int puntos){
         this.puntos += puntos;
         goles.updateGoles(this.puntos, partidos);
