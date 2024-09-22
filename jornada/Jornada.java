@@ -9,11 +9,15 @@ public class Jornada{
 
     public Jornada(LinkedHashMap<String, Equipo> equipos, ArrayList<String> programacion){
         numJornada++;
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < 18; i+=2){
             Partido a = new Partido(equipos.get(programacion.get(i)),equipos.get(programacion.get(i + 1)));
             a.simularPartido();
             listaDePartidos.add(a);
         }
+    }
+
+    public int getNumJornada(){
+        return numJornada;
     }
 
     public void mostrarMarcadores(){

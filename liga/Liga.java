@@ -1,5 +1,6 @@
 package liga;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import equipos.Equipo;
 import jornada.Jornada;
@@ -38,9 +39,21 @@ public class Liga{
     
     public void consultarJornadas(){
         System.out.println("Consultando Jornadas");
-        for(Jornada e : jornadas){
+        /*for(Jornada e : jornadas){
             e.mostrarMarcadores();
-        }
+        }*/
+        Iterator<Jornada> a = jornadas.iterator();
+        int i = 0;
+        int inicio;
+        Jornada aux;
+        do{
+            aux = a.next();
+            inicio = aux.getNumJornada();
+            i++;
+        }while(i < inicio);
+
+        aux.mostrarMarcadores();
+
     }
 
     public void incluirPlayoff(){
