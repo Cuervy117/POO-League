@@ -6,6 +6,9 @@ public class Partido {
         this.local = local;
         this.visitante = visitante;
     }
+    public Partido(){
+        
+    }
 
     public Partido(Equipo local){
         this.local = local;
@@ -20,5 +23,6 @@ public class Partido {
     }
 
     public void mostrarPartido(){
+        System.out.println(this.local.getNombre() + " - " + this.visitante.getNombre());
     }
 }

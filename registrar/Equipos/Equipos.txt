@@ -1,4 +1,8 @@
 America	0
-Chivas	0
 Cruz Azul	0
-Puebla	0
+Guadalajara	0
+Juarez	0
+Mazatlan	0
+Monterrey	0
+Pumas	0
+Tigres	0

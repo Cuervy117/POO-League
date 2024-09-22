@@ -13,7 +13,7 @@ public class Menu{
         System.out.println("4) Iniciar Campeonato");
         int opcion = sc.nextInt();
         sc.nextLine(); //para consumir el \n
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//limpia pantalla
+        //new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();//limpia pantalla
 
         switch (opcion) {
             case 1 ->{
@@ -45,6 +45,7 @@ public class Menu{
 
             case 3-> {
                 System.out.println("Has elegido la opcion 3");
+                Archivo.guardarEquiposExistentes(ligaMX);
                 ligaMX.generarCalendario();
             }
         }
