@@ -29,6 +29,13 @@ public class Liga {
 
     }
 
+    public void mostrarJornadas(){
+        Set <Partido> set = jornadas.keySet();
+        for (Partido partido: set){
+            partido.mostrarPartido();
+        }
+    }
+
     /*public void generarCalendario(){
         if(!puntosPorEquipo.isEmpty()){
             System.out.println("Generando Calendario...");
@@ -141,10 +148,11 @@ public void generarCalendario() {
                     //prueba para almacenar en jornadas
                     jornadas.put(calendario[a][b], a + b);
                     //calendario[a][b].mostrarPartido();
-                    //jornadas.keySet().forEach(z -> System.out.println(z + " "));
                     
+                    System.out.println("Se intenta almacenar");
                 }
             }
+            mostrarJornadas();
         } else {
             System.out.println("El numero de equipos no es par");
         }
