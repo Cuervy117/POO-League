@@ -21,7 +21,7 @@ public class Jornada{
         for(Partido e : listaDePartidos){
             System.out.println("Partido " + (listaDePartidos.indexOf(e) + 1));
             System.out.println(e.getLocal().getNombre() + " vs " + e.getVisitante().getNombre());
-            System.out.println(e.mostrarMarcador());
+            //System.out.println(e.mostrarMarcador());
         }
     }
 }

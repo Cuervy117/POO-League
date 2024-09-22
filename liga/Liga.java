@@ -5,13 +5,18 @@ import equipos.Equipo;
 import jornada.Jornada;
 import java.util.LinkedHashSet;
 public class Liga{
-    private LinkedHashMap<String, Equipo> equipos;
-    private LinkedHashSet<Jornada> jornadas;
-    private int numeroDeEquipos = equipos.size();
+    private LinkedHashMap<String, Equipo> equipos = new LinkedHashMap<>();
+    private LinkedHashSet<Jornada> jornadas = new LinkedHashSet<>();
     private boolean campeonatoIniciado = false;
 
     public void registrarEquipo(Equipo equipo){
         equipos.put(equipo.getNombre(), equipo);
+    }
+
+    public void infoEquipos(){
+        for(String e : equipos.keySet()){
+            System.out.println(equipos.get(e).getNombre() + " Puntos: " + equipos.get(e).getPuntos() + " Partidos: " + equipos.get(e).getPartidos());
+        }
     }
 
     public void generarCalendario(){
@@ -33,12 +38,19 @@ public class Liga{
     
     public void consultarJornadas(){
         System.out.println("Consultando Jornadas");
-        System.out.println(jornadas.toString());
+        for(Jornada e : jornadas){
+            e.mostrarMarcadores();
+        }
     }
 
     public void incluirPlayoff(){
         System.out.println("No se que es esto pibes");
     }
 
+    public static void actualizarProgramacion(ArrayList<String> programacion){
+        String aux = programacion.get(0);
+        programacion.remove(0);
+        programacion.add(aux);
+    }
 
 }
