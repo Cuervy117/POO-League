@@ -44,6 +44,7 @@ public class Menu{
             }
 
             case 3-> {
+                System.out.println("Has elegido la opcion 3");
                 ligaMX.generarCalendario();
             }
         }

@@ -21,7 +21,7 @@ public class Archivo{
             Path ruta = directorio.resolve("Equipos.txt"); // Agregamos al directorio creado anteriormente el nombre del archivo
             BufferedWriter escritor = new BufferedWriter(new FileWriter(ruta.toFile(), false)); //para que no se amontone, se actualiza con cada ciclo
             for(Entry <Equipo, Integer> entrada : l.puntosPorEquipo.entrySet()){
-                escritor.write(entrada.getKey().getNombre());
+                escritor.write(entrada.getKey().getNombre() + "\t" + entrada.getValue());
                 escritor.newLine();
             }
 
@@ -55,6 +55,35 @@ public class Archivo{
         System.out.println("Error al determinar la ruta del archivo: " + e.getMessage());
     }
     return contadorLineas;
+}
+
+    public static void guardarEquiposExistentes(Liga l) {
+        
+        try {
+            Path packageActual = Paths.get(Archivo.class.getResource("Archivo.class").toURI()).getParent();
+            Path directorio = packageActual.resolve("Equipos");
+            Path ruta = directorio.resolve("Equipos.txt");
+
+            if (Files.exists(ruta)) {
+                try (BufferedReader lector = new BufferedReader(new FileReader(ruta.toFile()))) {
+                    String linea;
+                    while ((linea = lector.readLine()) != null) {
+                        String [] bloques = linea.split("\t"); //separa cada elemento que esté tabulado
+                        String nombre = bloques[0];
+                        String valor = bloques[1];
+
+                        l.puntosPorEquipo.put(new Equipo(nombre) , Integer.valueOf(valor)); 
+                    }
+                } catch (IOException e) {
+                    System.out.println("Error al leer el archivo: " + e.getMessage());
+                }
+            } else {
+                System.out.println("El archivo no existe.");
+            }
+        } catch (URISyntaxException e) {
+            System.out.println("Error al determinar la ruta del archivo: " + e.getMessage());
+        }
+        
 }
 
     

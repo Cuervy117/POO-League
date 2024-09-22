@@ -30,16 +30,57 @@ public class Liga {
     }
 
     public void generarCalendario(){
+        
+        if(Archivo.contarEquipos() != 0){
+            System.out.println("Generando Calendario...");
+            //definir numero de equipos participantes, n será la variable
+            int n = puntosPorEquipo.size(); // antes estaba Archivo.contarEquipos()
+            if(n % 2 == 0){ //procede en caso de que el número de archivos sea par
+                int l = 0; //variable contadora para almacenar cada equipo local
+                int v = 0; //variable contadora para almacenar cada equipo visitante
+                Partido[][] calendario = new Partido[n-1][n/2]; //[filas][columnas]
+                for(int i = 0; i < n - 1 ; i ++ ){ //i es para filas
+                    for(int j = 0; j < n/2; j ++){ //j es paara columnas
+                        if(l == puntosPorEquipo.size()-2 ){
+                            l = 0; //se evalúa que k no sobrepase el número de equipos que hay, de esa forma vamos llenando de forma ordenada y ascendente
+                        }
+                        if (v == puntosPorEquipo.size()-2){
+                            v = 0;
+                        }
 
-        if(Archivo.contarEquipos() == 0){
-            System.out.println("No hay equipos");
+                        Equipo local = (Equipo) puntosPorEquipo.keySet().toArray()[l]; //se obtiene el equipo 'l' del mapa que contiene a los equipos ordenados
+                        Equipo visitante = (Equipo) puntosPorEquipo.reversed().keySet().toArray()[v]; //esto es para los visitantes y se necesita invertir el orden
+                        Equipo c = (Equipo) puntosPorEquipo.keySet().toArray()[puntosPorEquipo.size()-1]; //este es el último equipo en aparecer
+                        if (i % 2 == 1 && j == 0){ //evalua si el ciclo está en fila impar y que también se encuentre en la primer columna
+                            calendario[i][j].setLocal(c); //se asigna el ultimo equipo como local
+                            calendario[i][j].setVisitante(local); //se asigna como visitante el equipo obtenido hasta este momento
+                        }
+                        else{
+                            if(i % 2 == 0 && j == 0){
+                                calendario[i][j].setLocal(local);
+                                calendario[i][j].setVisitante(c);
+                            }else{
+                                calendario[i][j].setLocal(local);
+                                calendario[i][j].setVisitante(visitante);
+                                v ++; //solamente en los casos donde no nos encontremos en la primer columna
+                            }
+
+                        }
+                        
+                        l++; //l sigue recorriendo a los equipos 
+                    }
+                }
+            }else{
+                System.out.println("El numero de equipos no es par");
+            }
+
+            
 
         }
-        int i = 0, j = 0;
-        //definir numero de equipos participantes, n será la variable
-        
-        Partido[][] calendario;
-        
+        else{
+            System.out.println("No has ingresado ningún equipo");
+        } 
+
         
     }
 

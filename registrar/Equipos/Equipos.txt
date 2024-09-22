@@ -1,3 +1,4 @@
-America
-Chivas
-Cruz Azul
+America	0
+Chivas	0
+Cruz Azul	0
+Puebla	0
