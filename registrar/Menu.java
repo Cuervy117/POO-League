@@ -58,6 +58,7 @@ public class Menu{
     public static void menuPostCampeonato(Scanner sc, Liga liga)throws IOException, InterruptedException{
         System.out.println("2) Jornadas Anteriores");
         System.out.println("3) Mostrar jornadas de un equipo");
+        System.out.println("4) Simular Temporada");
         int opcion = sc.nextInt();
         sc.nextLine(); //para consumir el \n
 
@@ -84,6 +85,10 @@ public class Menu{
                 System.out.println("Ingresa el nombre del equipo que quieras ver sus jornadas");
                 String nombreEquipo = sc.nextLine();
                 liga.mostrarJornadasPorEquipo(nombreEquipo);
+            }
+            case 4 -> {
+                System.out.println("Simular temporada");
+                liga.simularTemporada();
             }
         }
         

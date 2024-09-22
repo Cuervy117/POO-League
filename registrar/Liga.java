@@ -63,6 +63,25 @@ public class Liga {
         }    
     }
 
+    public void simularTemporada(){
+        int puntos = 3;
+        int puntosEmpate = 1;
+        for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
+            
+            if(entrada.getKey().ganadorLocal() == 0){ //caso de empate
+                puntosPorEquipo.put(entrada.getKey().getLocal(), puntosEmpate);
+            }else{
+                if(entrada.getKey().ganadorLocal() == 1){
+                    puntosPorEquipo.put(entrada.getKey().getLocal(), puntos); 
+                }
+                else{
+                    puntosPorEquipo.put(entrada.getKey().getVisitante(), puntos);
+                }
+            }
+            
+        }    
+    }
+
     /*public void generarCalendario(){
         if(!puntosPorEquipo.isEmpty()){
             System.out.println("Generando Calendario...");

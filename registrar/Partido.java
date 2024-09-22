@@ -37,4 +37,25 @@ public class Partido {
     public Equipo getVisitante(){
         return visitante;
     }
+
+    public int ganadorLocal(){
+        /*for(int i = minutos; i >= 0; i--){
+            System.out.println("Minuto: " + (minutos - i));
+            
+        }*/
+        System.out.println(local.getGolesPorPartido() + " - " + visitante.getGolesPorPartido());
+        if(local.getGolesPorPartido() > visitante.getGolesPorPartido()){
+            return 1;
+        }
+        else{
+            if(local.getGolesPorPartido() == visitante.getGolesPorPartido()){
+                //empate
+                return 0;
+            }else{
+                //derrota local
+                return -1;
+            }
+        }
+    }
+
 }
