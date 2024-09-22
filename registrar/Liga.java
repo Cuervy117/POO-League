@@ -1,15 +1,17 @@
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class Liga {
     String nombre;
     TreeMap<Equipo, Integer> puntosPorEquipo; //la llave son los equipos ya que son únicos y cada llave contiene un valor que son los puntos
+    LinkedHashMap<Partido, Integer> jornadas;
 
     public Liga(String nombre){
         this.nombre = nombre;
-    this.puntosPorEquipo = new TreeMap<>((Equipo e1, Equipo e2) -> e1.getNombre().compareTo(e2.getNombre()) //el tree map va a estar ordenado inicialmente por orden alfabético
+        this.puntosPorEquipo = new TreeMap<>((Equipo e1, Equipo e2) -> e1.getNombre().compareTo(e2.getNombre()) //el tree map va a estar ordenado inicialmente por orden alfabético
         );
-
+        this.jornadas = new LinkedHashMap<>();
     }
 
     public  void registrarEquipo(Equipo e){
@@ -25,6 +27,20 @@ public class Liga {
             System.out.println(equipo.getNombre());
         }
 
+    }
+
+    public void generarCalendario(){
+
+        if(Archivo.numeroEquipos() == -1){
+            return;
+            
+        }
+        int i = 0, j = 0;
+        //definir numero de equipos participantes, n será la variable
+        
+        Partido[][] calendario;
+        
+        
     }
 
 

@@ -38,6 +38,14 @@ public class Menu{
                 
 
             }
+
+            case 2->  {
+                //editar equipos
+            }
+
+            case 3-> {
+                ligaMX.generarCalendario();
+            }
         }
 
     }

@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -29,5 +31,35 @@ public class Archivo{
             System.out.println("Error al guardar los equipos en el archivo" + e.getMessage());
         }  
     }
+
+   public static int contarEquipos() {
+    int contadorLineas = 0;
+    try {
+        Path packageActual = Paths.get(Archivo.class.getResource("Archivo.class").toURI()).getParent();
+        Path directorio = packageActual.resolve("Equipos");
+        Path ruta = directorio.resolve("Equipos.txt");
+
+        if (Files.exists(ruta)) {
+            try (BufferedReader lector = new BufferedReader(new FileReader(ruta.toFile()))) {
+                String linea;
+                while ((linea = lector.readLine()) != null) {
+                    contadorLineas++;
+                }
+            } catch (IOException e) {
+                System.out.println("Error al leer el archivo: " + e.getMessage());
+            }
+        } else {
+            System.out.println("El archivo no existe.");
+        }
+    } catch (URISyntaxException e) {
+        System.out.println("Error al determinar la ruta del archivo: " + e.getMessage());
+    }
+    return contadorLineas;
+}
+
+    
+    
+
+    
 
 }
