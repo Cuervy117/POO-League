@@ -138,7 +138,11 @@ public void generarCalendario() {
             // Mostrar los partidos generados
             for (int a = 0; a < n - 1; a++) {
                 for (int b = 0; b < n / 2; b++) {
-                    calendario[a][b].mostrarPartido();
+                    //prueba para almacenar en jornadas
+                    jornadas.put(calendario[a][b], a + b);
+                    //calendario[a][b].mostrarPartido();
+                    //jornadas.keySet().forEach(z -> System.out.println(z + " "));
+                    
                 }
             }
         } else {
@@ -147,9 +151,9 @@ public void generarCalendario() {
     } else {
         System.out.println("No has ingresado ningún equipo");
     }
+    
 }
 
-    
     
     
 
