@@ -59,6 +59,7 @@ public class Menu{
         System.out.println("2) Jornadas Anteriores");
         System.out.println("3) Mostrar jornadas de un equipo");
         System.out.println("4) Simular Temporada");
+        System.out.println("5) Iniciar PlayOffs");
         int opcion = sc.nextInt();
         sc.nextLine(); //para consumir el \n
 
@@ -89,6 +90,10 @@ public class Menu{
             case 4 -> {
                 System.out.println("Simular temporada");
                 liga.simularTemporada();
+            }
+            case 5 -> {
+                System.out.println("Iniciar PlayOffs");
+                
             }
         }
         
