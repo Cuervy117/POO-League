@@ -22,12 +22,12 @@ public class Liga {
 
     public void mostrarEquipos(){
         Set <Equipo> set = puntosPorEquipo.keySet(); //creo un set únicamente de equipos para poderlos ordenar alfabeticamente
-        /*for(Entry <Equipo, Integer> entrada : puntosPorEquipo.entrySet()){
-            System.out.println(entrada.getKey().getNombre());
-        }*/
-        for(Equipo equipo: set){
-            System.out.println(equipo.getNombre());
+        for(Entry <Equipo, Integer> entrada : puntosPorEquipo.entrySet()){
+            System.out.println(entrada.getKey().getNombre() + " " + entrada.getValue());
         }
+        /*for(Equipo equipo: set){
+            System.out.println(equipo.getNombre() );
+        }*/
 
     }
 
@@ -67,7 +67,7 @@ public class Liga {
         int puntos = 3;
         int puntosEmpate = 1;
         for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
-            
+            entrada.getKey().mostrarPartido();
             if(entrada.getKey().ganadorLocal() == 0){ //caso de empate
                 puntosPorEquipo.put(entrada.getKey().getLocal(), puntosEmpate);
             }else{
@@ -78,8 +78,10 @@ public class Liga {
                     puntosPorEquipo.put(entrada.getKey().getVisitante(), puntos);
                 }
             }
-            
-        }    
+            //puntosEmpate += puntosEmpate;
+            //puntos += puntos;
+        }
+        mostrarEquipos();   
     }
 
     /*public void generarCalendario(){

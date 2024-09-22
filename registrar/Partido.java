@@ -43,7 +43,7 @@ public class Partido {
             System.out.println("Minuto: " + (minutos - i));
             
         }*/
-        System.out.println(local.getGolesPorPartido() + " - " + visitante.getGolesPorPartido());
+        //System.out.println(local.getGolesPorPartido() + " - " + visitante.getGolesPorPartido());
         if(local.getGolesPorPartido() > visitante.getGolesPorPartido()){
             return 1;
         }
