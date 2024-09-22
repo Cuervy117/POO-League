@@ -31,9 +31,9 @@ public class Liga {
 
     public void generarCalendario(){
 
-        if(Archivo.numeroEquipos() == -1){
-            return;
-            
+        if(Archivo.contarEquipos() == 0){
+            System.out.println("No hay equipos");
+
         }
         int i = 0, j = 0;
         //definir numero de equipos participantes, n será la variable
