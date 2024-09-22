@@ -1,7 +1,7 @@
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.Map.Entry;
 
 public class Liga {
     String nombre;
@@ -32,7 +32,7 @@ public class Liga {
 
     public void mostrarJornadas(){
         for(Entry <Partido, Integer> entrada : jornadas.entrySet()){
-            System.out.println(entrada.getKey().getNombre() + entrada.getValue());
+            System.out.println( entrada.getKey().mostrarPartido() + entrada.getValue());
         }
     }
 
