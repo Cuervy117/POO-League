@@ -96,6 +96,7 @@ public class Partido {
             return visitante;
         } else {
             //si empatan se hace llamada recursiva
+            System.out.println("Tiempos extra");
             local.setGolesAFavor(golesAFavorLocal - golesLocal);
             local.setGolesEnContra(golesEnContraLocal - golesVisitante);
     
