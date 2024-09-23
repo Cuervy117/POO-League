@@ -47,9 +47,8 @@ public class Playoff {
         List<Equipo> equipos = new ArrayList<>(lideresOrdenados.keySet());
 
         while (equipos.size() > 1) {
-            simularRonda(equipos);
+            equipos = simularRonda(equipos);
             
-            equipos = obtenerGanadores(equipos);
         }
 
         if (equipos.size() == 1) {
@@ -57,7 +56,7 @@ public class Playoff {
         }
     }
 
-    private void simularRonda(List<Equipo> equipos) {
+    private List<Equipo> simularRonda(List<Equipo> equipos) {
         List<Equipo> ganadores = new ArrayList<>();
 
         int n = equipos.size();
@@ -87,6 +86,7 @@ public class Playoff {
                 ganadores.add(visitante);
            }
         }
+        return ganadores;
     }
 
     private List<Equipo> obtenerGanadores(List<Equipo> equipos) {
