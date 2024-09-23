@@ -73,33 +73,33 @@ public class Playoff {
             Equipo ganadorIda = partidoIda.eliminatoria();
             partidosPorRonda.put(partidoIda, equipos.size()/2); // Almacena el partido de ida
             System.out.println(ganadorIda.getNombre() + " " + ganadorIda.getGolesAFavor());
+            
 
             Partido partidoVuelta = new Partido(visitante, local);
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
             partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Almacena el partido de vuelta
+            if(ganadorVuelta.equals(local)){
+                local.setGolesAFavor(ganadorVuelta.getGolesAFavor() + local.getGolesAFavor());
+            }else{
+                visitante.setGolesAFavor(ganadorIda.getGolesAFavor() + visitante.getGolesAFavor());
+            }
+
+            
             System.out.println(ganadorVuelta.getNombre() + " " + ganadorVuelta.getGolesAFavor());
+
             // Determina el ganador global
            System.out.println("Global ");
            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
-           if(local.getGolesAFavor() > visitante.getGolesAFavor()){
-                ganadores.add(local);
+           if(ganadorIda.equals(ganadorVuelta)){
+            ganadores.add(ganadorIda);
            }
            else{
-                ganadores.add(visitante);
+            
            }
         }
         return ganadores;
     }
 
-    private List<Equipo> obtenerGanadores(List<Equipo> equipos) {
-        // Esta función debe retornar la lista de ganadores tras una ronda
-        List<Equipo> ganadores = new ArrayList<>();
-        for (int i = 0; i < equipos.size(); i += 2) {
-            // Asumiendo que los ganadores son los equipos que se pasan
-            ganadores.add(equipos.get(i)); // Ajusta esta lógica según la lógica de tu eliminatoria
-        }
-        return ganadores;
-    }
 
     public LinkedHashMap<Partido, Integer> getPartidosPorRonda() {
         return partidosPorRonda;
