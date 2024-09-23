@@ -25,20 +25,23 @@ public class Playoff {
     }
 
     public void almacenarParticipantes(Liga liga, int numDeParticipantes) {
+        Map<Equipo, Integer> tempMap = new LinkedHashMap<>();
         int i = 0;
-        
+    
         for (Map.Entry<Equipo, Integer> entrada : liga.puntosPorEquipo.entrySet()) {
-            if (i >= numDeParticipantes) {
+            if (i == numDeParticipantes) {
                 break;
             }
-            lideres.put(entrada.getKey(), entrada.getValue());
+            tempMap.put(entrada.getKey(), entrada.getValue());
             i++;
         }
-
+    
+        lideres.putAll(tempMap);
+    
         System.out.println("Ya se guardaron");
         lideres.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
-
     }
+    
 
 
 }
