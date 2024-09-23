@@ -97,7 +97,7 @@ public class Menu{
                 System.out.println("Iniciar PlayOffs");
                 Playoff liguilla = new Playoff(liga);
                 liguilla.almacenarParticipantes(liga, 8);
-                liguilla.iniciarTorneo(8);
+                liguilla.simularPlayoffs();
 
             }
         }
