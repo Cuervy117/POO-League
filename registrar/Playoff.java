@@ -55,20 +55,70 @@ public class Playoff {
         
     }
 
-    public void eliminatoria(int numDeParticipantes){
-        //se resetean los goles a favor y en contra
-
+    public void simularRondaIdaYVuelta(int numDeParticipantes) {
+        List<Equipo> ganadores = new ArrayList<>();
         for(Equipo e: equipos){
             e.setGolesAFavor(0);
             e.setGolesEnContra(0);
         }
-
-        //comienza la primera fase
-
-       partidosPorRonda.forEach(((partido, integer) -> {
-        System.out.println(partido.mostrarPartido() + "\t" + integer);
-       }));
+        for (int i = 0; i < numDeParticipantes / 2; i++) {
+            Equipo local = equipos.get(i);
+            Equipo visitante = equipos.get(numDeParticipantes - i - 1);
+            
+            // Partido de ida
+            Partido ida = new Partido(local, visitante);
+            partidosPorRonda.put(ida, numDeParticipantes / 2);
+            int resultadoIda = ida.ganadorLocal();
+            System.out.println(ida.mostrarPartido());
+            
+            // Partido de vuelta
+            Partido vuelta = new Partido(visitante, local);
+            partidosPorRonda.put(vuelta, numDeParticipantes / 2);
+            int resultadoVuelta = vuelta.ganadorLocal();
+            System.out.println(vuelta.mostrarPartido());
+            
+            // Determinar el ganador basado en el resultado agregado
+            Long golesLocalIda = local.getGolesAFavor() - local.getGolesEnContra();
+            Long golesVisitanteIda = visitante.getGolesAFavor() - visitante.getGolesEnContra();
+            
+            Long golesLocalVuelta = local.getGolesAFavor() - local.getGolesEnContra();
+            Long golesVisitanteVuelta = visitante.getGolesAFavor() - visitante.getGolesEnContra();
+            
+            Long totalGolesLocal = golesLocalIda + golesLocalVuelta;
+            Long totalGolesVisitante = golesVisitanteIda + golesVisitanteVuelta;
+            
+            if (totalGolesLocal > totalGolesVisitante) {
+                ganadores.add(local);
+            } else if (totalGolesLocal < totalGolesVisitante) {
+                ganadores.add(visitante);
+            } else {
+                // En caso de empate en el resultado agregado, podrías definir una lógica adicional
+                // Aquí simplemente agregamos al local por simplicidad
+                ganadores.add(local);
+            }
+        }
+        
+        // Actualizar la lista de equipos con los ganadores para la siguiente ronda
+        equipos = ganadores;
+        
+        System.out.println("Equipos que avanzan a la siguiente ronda:");
+        for (Equipo e : equipos) {
+            System.out.println(e.getNombre());
+        }
     }
+    
+
+  public void iniciarTorneoIdaYVuelta(int numDeParticipantes) {
+    while (numDeParticipantes > 1) {
+        simularRondaIdaYVuelta(numDeParticipantes);
+        numDeParticipantes /= 2;
+    }
+    
+    if (equipos.size() == 1) {
+        System.out.println("El campeón es: " + equipos.get(0).getNombre());
+    }
+}
+    
     
     
 
