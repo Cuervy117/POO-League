@@ -20,11 +20,7 @@ public class Playoff {
                 Long difGoles1 = e1.getGolesAFavor() - e1.getGolesEnContra();
                 Long difGoles2 = e2.getGolesAFavor() - e2.getGolesEnContra();
                 int difGolesComparison = Long.compare(difGoles2, difGoles1); // Orden descendente por diferencia de goles
-                if (difGolesComparison != 0) {
-                    return difGolesComparison;
-                } else {
-                    return e1.getNombre().compareTo(e2.getNombre()); // Orden ascendente por nombre
-                }
+                return difGolesComparison;
             }
         });
     }
