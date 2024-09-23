@@ -3,8 +3,8 @@ public class Equipo {
     private String nombre;
     private Jugador jugadores;
     private ProbaGoles rendimiento; 
-    private int golesAFavor;
-    private int golesEnContra;
+    private long golesAFavor;
+    private long golesEnContra;
     private int victorias;
     private int derrotas ;
     private int empates ;
@@ -26,19 +26,19 @@ public class Equipo {
         this.nombre = nombre;
     }
 
-    public void setGolesAFavor(int golesAFavor){
+    public void setGolesAFavor(long golesAFavor){
         this.golesAFavor = golesAFavor;
     }
 
-    public void setGolesEnContra(int golesEnContra){
+    public void setGolesEnContra(long golesEnContra){
         this.golesEnContra = golesEnContra;
     }
 
-    public int getGolesAFavor(){
+    public long getGolesAFavor(){
         return golesAFavor;
     }
 
-    public int getGolesEnContra(){
+    public long getGolesEnContra(){
         return golesEnContra;
     }
 
