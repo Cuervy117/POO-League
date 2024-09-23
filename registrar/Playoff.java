@@ -31,8 +31,12 @@ public class Playoff {
             if (i >= numDeParticipantes) {
                 break;
             }
+            lideres.put(entrada.getKey(), entrada.getValue());
             i++;
         }
+
+        System.out.println("Ya se guardaron");
+        lideres.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
 
     }
 
