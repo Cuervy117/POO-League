@@ -68,17 +68,16 @@ public class Playoff {
             local.setGolesAFavor(0);
             visitante.setGolesAFavor(0);
 
-            String marcador = local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre();
 
             Partido partidoIda = new Partido(local, visitante);
             Equipo ganadorIda = partidoIda.eliminatoria();
             partidosPorRonda.put(partidoIda, equipos.size()/2); // Almacena el partido de ida
-            System.out.println(marcador);
+            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
 
             Partido partidoVuelta = new Partido(visitante, local);
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
             partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Almacena el partido de vuelta
-            System.out.println(marcador);
+            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
 
             // Determina el ganador global
            System.out.println("Global ");
