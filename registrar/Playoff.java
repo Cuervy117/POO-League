@@ -1,16 +1,24 @@
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-
 
 public class Playoff {
     LinkedHashMap<Partido, Integer> partidosPorRonda;
-    TreeMap<Equipo, Integer> lideres;
+    List<Equipo> equipos;
 
     public Playoff(Liga liga){
         this.partidosPorRonda = new LinkedHashMap<>();
-        this.lideres = new TreeMap<>((Equipo e1, Equipo e2) -> {
+        this.equipos = new ArrayList<>(liga.puntosPorEquipo.keySet());
+
+    }
+
+    public void almacenarParticipantes(Liga liga, int numDeParticipantes) {
+        List<Equipo> equipos = new ArrayList<>(liga.puntosPorEquipo.keySet());
+    
+        // Ordenar la lista de equipos según los criterios
+        equipos.sort((e1, e2) -> {
             int puntos1 = liga.puntosPorEquipo.get(e1);
             int puntos2 = liga.puntosPorEquipo.get(e2);
             int puntosComparison = Integer.compare(puntos2, puntos1); // Orden descendente por puntos
@@ -20,28 +28,26 @@ public class Playoff {
                 Long difGoles1 = e1.getGolesAFavor() - e1.getGolesEnContra();
                 Long difGoles2 = e2.getGolesAFavor() - e2.getGolesEnContra();
                 int difGolesComparison = Long.compare(difGoles2, difGoles1); // Orden descendente por diferencia de goles
-                return difGolesComparison;
+                if (difGolesComparison != 0) {
+                    return difGolesComparison;
+                } else {
+                    return e1.getNombre().compareTo(e2.getNombre()); // Orden ascendente por nombre
+                }
             }
         });
-    }
-
-    public void almacenarParticipantes(Liga liga, int numDeParticipantes) {
-        Map<Equipo, Integer> tempMap = new LinkedHashMap<>();
-        int i = 0;
-        //liga.puntosPorEquipo.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
-        for (Map.Entry<Equipo, Integer> entrada : liga.puntosPorEquipo.entrySet()) {
-            if (i == numDeParticipantes) {
-                break;
-            }
-            tempMap.put(entrada.getKey(), entrada.getValue());
-            i++;
+    
+        // Crear un mapa para almacenar los líderes ordenados
+        Map<Equipo, Integer> lideresOrdenados = new LinkedHashMap<>();
+        for (int i = 0; i < numDeParticipantes && i < equipos.size(); i++) {
+            Equipo equipo = equipos.get(i);
+            lideresOrdenados.put(equipo, liga.puntosPorEquipo.get(equipo));
         }
     
-        lideres.putAll(tempMap);
-    
+        // Imprimir los líderes ordenados
         System.out.println("Ya se guardaron");
-        lideres.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
+        lideresOrdenados.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
     }
+    
     
 
 
