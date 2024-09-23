@@ -72,14 +72,14 @@ public class Playoff {
             Partido partidoIda = new Partido(local, visitante);
             Equipo ganadorIda = partidoIda.eliminatoria();
             partidosPorRonda.put(partidoIda, equipos.size()/2); // Almacena el partido de ida
-            System.out.println(ganadorIda.getNombre() + " " + ganadorIda.getGolesAFavor());
+           
             
 
             Partido partidoVuelta = new Partido(visitante, local);
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
             partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Almacena el partido de vuelta
             
-            System.out.println(ganadorVuelta.getNombre() + " " + ganadorVuelta.getGolesAFavor());
+            
 
             if(local.getGolesAFavor() == visitante.getGolesAFavor()){
                 System.out.println("Tiempos extra");
