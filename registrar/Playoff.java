@@ -17,9 +17,9 @@ public class Playoff {
             if (puntosComparison != 0) {
                 return puntosComparison;
             } else {
-                int difGoles1 = e1.getGolesAFavor() - e1.getGolesEnContra();
-                int difGoles2 = e2.getGolesAFavor() - e2.getGolesEnContra();
-                return Integer.compare(difGoles2, difGoles1); // Orden descendente por diferencia de goles
+                Long difGoles1 = e1.getGolesAFavor() - e1.getGolesEnContra();
+                Long difGoles2 = e2.getGolesAFavor() - e2.getGolesEnContra();
+                return Long.compare(difGoles2, difGoles1); // Orden descendente por diferencia de goles
             }
         });
     }

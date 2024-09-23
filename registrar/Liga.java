@@ -1,4 +1,3 @@
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -19,21 +18,6 @@ public class Liga {
     public  void registrarEquipo(Equipo e){
         
         this.puntosPorEquipo.put(e, 0);
-        this.puntosPorEquipo = new TreeMap<>(new Comparator<Equipo>() {
-            @Override
-            public int compare(Equipo e1, Equipo e2) {
-                int puntos1 = puntosPorEquipo.getOrDefault(e1, 0);
-                int puntos2 = puntosPorEquipo.getOrDefault(e2, 0);
-                int puntosComparison = Integer.compare(puntos2, puntos1); // Orden descendente por puntos
-                if (puntosComparison != 0) {
-                    return puntosComparison;
-                } else {
-                    int difGoles1 = e1.getGolesAFavor() - e1.getGolesEnContra();
-                    int difGoles2 = e2.getGolesAFavor() - e2.getGolesEnContra();
-                    return Integer.compare(difGoles2, difGoles1); // Orden descendente por diferencia de goles
-                }
-            }
-        });
     }
 
     public void mostrarEquipos(){
