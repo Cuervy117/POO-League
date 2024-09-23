@@ -42,6 +42,7 @@ public class Playoff {
        
         System.out.println("Ya se guardaron");
         lideresOrdenados.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
+        equipos.addAll(lideresOrdenados.keySet());
     }
 
     public void generarRondas(int numDeParticipantes ){
