@@ -67,7 +67,7 @@ public class Partido {
     }
     public Equipo eliminatoria() {
         Long golesLocal = local.getGolesPorPartido();
-        Long golesVisitante = visitante.getGolesPorPartido();
+        Long golesVisitante = visitante.getGolesPorPartido(); //Goles generados por el partido
     
         
         long golesAFavorLocal = local.getGolesAFavor() + golesLocal;
@@ -86,12 +86,12 @@ public class Partido {
         
         if (golesLocal > golesVisitante) {
             System.out.println("Final");
-            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
+            System.out.println(local.getNombre() + " " + golesLocal + " - "+ golesVisitante + " " + visitante.getNombre());
 
             return local;
         } else if (golesLocal < golesVisitante) {
             System.out.println("Final");
-            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
+            System.out.println(local.getNombre() + " " +golesLocal + " - "+ golesVisitante + " " + visitante.getNombre());
 
             return visitante;
         } else {

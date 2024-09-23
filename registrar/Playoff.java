@@ -78,12 +78,6 @@ public class Playoff {
             Partido partidoVuelta = new Partido(visitante, local);
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
             partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Almacena el partido de vuelta
-            if(ganadorVuelta.equals(local)){
-                local.setGolesAFavor(ganadorVuelta.getGolesAFavor() + local.getGolesAFavor());
-            }else{
-                visitante.setGolesAFavor(ganadorIda.getGolesAFavor() + visitante.getGolesAFavor());
-            }
-
             
             System.out.println(ganadorVuelta.getNombre() + " " + ganadorVuelta.getGolesAFavor());
 
