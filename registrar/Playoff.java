@@ -78,7 +78,6 @@ public class Playoff {
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
             partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Almacena el partido de vuelta
             System.out.println(ganadorVuelta.getNombre() + " " + ganadorVuelta.getGolesAFavor());
-
             // Determina el ganador global
            System.out.println("Global ");
            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
