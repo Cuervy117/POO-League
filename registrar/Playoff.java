@@ -62,6 +62,12 @@ public class Playoff {
             e.setGolesAFavor(0);
             e.setGolesEnContra(0);
         }
+
+        //comienza la primera fase
+
+       partidosPorRonda.forEach(((partido, integer) -> {
+        System.out.println(partido.mostrarPartido() + "\t" + integer);
+       }));
     }
     
     
