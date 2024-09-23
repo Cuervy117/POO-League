@@ -96,6 +96,8 @@ public class Playoff {
                 // Aquí simplemente agregamos al local por simplicidad
                 ganadores.add(local);
             }
+
+            System.out.println(local.getNombre()+ " " + totalGolesLocal + " - " + totalGolesVisitante + " " + visitante.getNombre());
         }
         
         // Actualizar la lista de equipos con los ganadores para la siguiente ronda
