@@ -94,7 +94,7 @@ public class Playoff {
         }
     }
 
-    private void iniciarTorneo(int numDeParticipantes){
+    public void iniciarTorneo(int numDeParticipantes){
         while(equipos.size() > 1){
             simularRonda(equipos.size());
         }
