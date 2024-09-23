@@ -44,12 +44,11 @@ public class Playoff {
     }
 
     public void simularPlayoffs() {
-        int ronda = 1; // 1 para octavos, 2 para cuartos, etc.
         List<Equipo> equipos = new ArrayList<>(lideresOrdenados.keySet());
 
         while (equipos.size() > 1) {
-            simularRonda(equipos, ronda);
-            ronda++;
+            simularRonda(equipos);
+            
             equipos = obtenerGanadores(equipos);
         }
 
@@ -58,7 +57,7 @@ public class Playoff {
         }
     }
 
-    private void simularRonda(List<Equipo> equipos, int ronda) {
+    private void simularRonda(List<Equipo> equipos) {
         List<Equipo> ganadores = new ArrayList<>();
 
         int n = equipos.size();
@@ -68,18 +67,15 @@ public class Playoff {
 
             Partido partidoIda = new Partido(local, visitante);
             Equipo ganadorIda = partidoIda.eliminatoria();
-            partidosPorRonda.put(partidoIda, ronda); // Almacena el partido de ida
+            partidosPorRonda.put(partidoIda, equipos.size()/2); // Almacena el partido de ida
 
             Partido partidoVuelta = new Partido(visitante, local);
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
-            partidosPorRonda.put(partidoVuelta, ronda); // Almacena el partido de vuelta
+            partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Almacena el partido de vuelta
 
             // Determina el ganador global
-            if (ganadorIda.equals(visitante)) {
-                ganadores.add(visitante);
-            } else {
-                ganadores.add(local);
-            }
+           System.out.println("Global ");
+           System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
         }
     }
 
