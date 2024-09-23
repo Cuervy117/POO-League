@@ -7,6 +7,9 @@ public class Principal {
         Liga liga = new Liga("Liga MX"); //aqui hay que hacerlo diferente, quiero que se puedan crear varias ligas
         Archivo.guardarEquiposExistentes(liga);
         Menu.menuPreCampeonato(sc, liga);
-        Menu.menuPostCampeonato(sc, liga);
+        do { 
+            Menu.menuPostCampeonato(sc, liga);    
+        } while (true);
+        
     }
 }
