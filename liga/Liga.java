@@ -83,12 +83,12 @@ public class Liga{
     /**
      * Metodo que imprime las jornadas existentes en la liga
      */
-    public void consultarJornadas(){
+    public void consultarJornadas(int i){
         System.out.println("Consultando Jornadas");
         /*for(Jornada e : jornadas){
             e.mostrarMarcadores();
         }*/
-        Iterator<Jornada> a = jornadas.iterator();
+        /*Iterator<Jornada> a = jornadas.iterator();
         int i = 0;
         int inicio;
         Jornada aux;
@@ -99,6 +99,22 @@ public class Liga{
         }while(i < inicio);
 
         aux.mostrarMarcadores();
+        */
+        Iterator<Jornada> a = jornadas.iterator();
+        for(int h = 0; h < i; h++){
+            a.next();
+        }
+        a.next().mostrarMarcadores();
+    }
+
+    public void mostrarRangoJornadas(int i){
+        Iterator<Jornada> a = jornadas.iterator();
+        for(int h = 0; h <= i; h++){
+            a.next().mostrarMarcadores();
+        }
+    }
+
+    public void mostrarJornadasPorEquipo(String nombreEquipo){
 
     }
     /**

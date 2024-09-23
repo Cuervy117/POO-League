@@ -1,6 +1,9 @@
+package registrar;
 import java.io.IOException;
+import java.util.Map.Entry;
 import java.util.Scanner;
-
+import equipos.*;
+import liga.*;
 public class Menu{
         public static void menuPreCampeonato(Scanner sc, Liga liga)throws IOException, InterruptedException{
 
@@ -18,8 +21,8 @@ public class Menu{
                 do {
                     System.out.println("Ingresa el nombre de tu equipo: ");
                     nombre = sc.nextLine();   
-                    
-                    Equipo equipoCreado = new Equipo(nombre); //se crea el equipo en cada iteración del do-while con el constructor que requiere el nombre
+
+                    Equipo equipoCreado = new Equipo(null, nombre,null); //se crea el equipo en cada iteración del do-while con el constructor que requiere el nombre
                     liga.registrarEquipo(equipoCreado);
 
                     System.out.println("¿Quieres seguir registrando equipos? [Si/No]");
@@ -31,8 +34,9 @@ public class Menu{
                 Archivo.guardarEquipos(liga);
 
                 System.out.println("Los equipos registrados fueron: ");
-                liga.mostrarEquipos();
-                
+                for(Entry<String,Equipo> e: liga.getEquipos().entrySet()){
+                    System.out.print(e.getKey() + "\t-\t");
+                }
 
             }
 
@@ -66,13 +70,14 @@ public class Menu{
             case 2 -> {
                 //está pensado para mostrar únicamente los partidos de una jornada específica
                 System.out.println("Jornadas de la liga: ");
-                System.out.println(liga.jornadas.values());
-
+                for(int i = 0; i < liga.getJornadas().getFirst().getNumJornada(); i++){
+                    System.out.print("Jornada " + i + ", ");
+                }
                 System.out.println("Ingresa la jornada que quieras consultar: ");
                 int numeroJornada = sc.nextInt();
                 sc.nextLine(); //consume el salto de linea
 
-                liga.mostrarJornadas(numeroJornada);
+                liga.consultarJornadas(numeroJornada);
 
                 //ahora está pensado para mostrar el rango desde la primera jornada hasta la jornada deseada
                 System.out.println("Ingresa la jornada hasta la que quieras consultar. El rango comienza desde la primera.");
@@ -81,14 +86,13 @@ public class Menu{
                 liga.mostrarRangoJornadas(limiteJornada);
             }
             case 3->{
-
                 System.out.println("Ingresa el nombre del equipo que quieras ver sus jornadas");
                 String nombreEquipo = sc.nextLine();
                 liga.mostrarJornadasPorEquipo(nombreEquipo);
             }
             case 4 -> {
                 System.out.println("Simular temporada");
-                liga.simularTemporada();
+                liga.simularJornada(null);
             }
         }
         
