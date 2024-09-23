@@ -85,6 +85,8 @@ public class Playoff {
 
         }
         equipos = ganadores;
+        System.out.println("Los equipos que pasan a la siguiente ronda son: ");
+        equipos.forEach(e -> System.out.println(e.getNombre()));
     }
 
     private void resetearGoles() {
