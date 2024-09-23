@@ -55,69 +55,49 @@ public class Playoff {
         
     }
 
-    public void simularRondaIdaYVuelta(int numDeParticipantes) {
-        List<Equipo> ganadores = new ArrayList<>();
-        for(Equipo e: equipos){
-            e.setGolesAFavor(0);
-            e.setGolesEnContra(0);
-        }
-        for (int i = 0; i < numDeParticipantes / 2; i++) {
+
+    public void simularRonda(int numDeParticipantes) {
+        // Resetea goles de todos los equipos antes de comenzar la ronda
+        resetearGoles();
+        ArrayList <Equipo> ganadores = new ArrayList<>();
+
+        // Simular partidos de ida
+        for (int i = 0; i < equipos.size()/2; i ++) {
             Equipo local = equipos.get(i);
-            Equipo visitante = equipos.get(numDeParticipantes - i - 1);
-            
-            // Partido de ida
-            Partido ida = new Partido(local, visitante);
-            partidosPorRonda.put(ida, numDeParticipantes / 2);
-            int resultadoIda = ida.ganadorLocal();
-            System.out.println(ida.mostrarPartido());
-            
-            // Partido de vuelta
-            Partido vuelta = new Partido(visitante, local);
-            partidosPorRonda.put(vuelta, numDeParticipantes / 2);
-            int resultadoVuelta = vuelta.ganadorLocal();
-            System.out.println(vuelta.mostrarPartido());
-            
-            // Determinar el ganador basado en el resultado agregado
-            Long golesLocalIda = local.getGolesAFavor() - local.getGolesEnContra();
-            Long golesVisitanteIda = visitante.getGolesAFavor() - visitante.getGolesEnContra();
-            
-            Long golesLocalVuelta = local.getGolesAFavor() - local.getGolesEnContra();
-            Long golesVisitanteVuelta = visitante.getGolesAFavor() - visitante.getGolesEnContra();
-            
-            Long totalGolesLocal = golesLocalIda + golesLocalVuelta;
-            Long totalGolesVisitante = golesVisitanteIda + golesVisitanteVuelta;
-            
-            if (totalGolesLocal > totalGolesVisitante) {
+            Equipo visitante = equipos.get(equipos.size() - i -1);
+            Partido partidoIda = new Partido(local, visitante);
+
+            // Lógica para la eliminatoria del partido de ida
+            Equipo ganadorIda = partidoIda.eliminatoria();
+            partidosPorRonda.put(partidoIda, equipos.size()/2); // Guardar el partido de ida
+
+            // Simular partido de vuelta
+            Partido partidoVuelta = new Partido(visitante, local);
+            Equipo ganadorVuelta = partidoVuelta.eliminatoria();
+            partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Guardar el partido de vuelta
+
+            if(local.getGolesAFavor() > visitante.getGolesAFavor()){
                 ganadores.add(local);
-            } else if (totalGolesLocal < totalGolesVisitante) {
+
+            }else{
                 ganadores.add(visitante);
-            } else {
-                // En caso de empate en el resultado agregado, podrías definir una lógica adicional
-                // Aquí simplemente agregamos al local por simplicidad
-                ganadores.add(local);
             }
 
-            System.out.println(local.getNombre()+ " " + totalGolesLocal + " - " + totalGolesVisitante + " " + visitante.getNombre());
         }
-        
-        // Actualizar la lista de equipos con los ganadores para la siguiente ronda
         equipos = ganadores;
-        
-        System.out.println("Equipos que avanzan a la siguiente ronda:");
-        for (Equipo e : equipos) {
-            System.out.println(e.getNombre());
+    }
+
+    private void resetearGoles() {
+        for (Equipo equipo : equipos) {
+            equipo.setGolesAFavor(0);
+            equipo.setGolesEnContra(0);
         }
     }
-    
 
-  public void iniciarTorneoIdaYVuelta(int numDeParticipantes) {
-    while (numDeParticipantes > 1) {
-        simularRondaIdaYVuelta(numDeParticipantes);
-        numDeParticipantes /= 2;
-    }
-    
-    if (equipos.size() == 1) {
-        System.out.println("El campeón es: " + equipos.get(0).getNombre());
+    private void iniciarTorneo(int numDeParticipantes){
+        while(equipos.size() > 1){
+            simularRonda(equipos.size());
+        }
     }
 }
     
@@ -125,4 +105,4 @@ public class Playoff {
     
 
 
-}
+

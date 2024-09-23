@@ -64,8 +64,41 @@ public class Partido {
                 return -1;
             }
         }
-        
-
     }
+    public Equipo eliminatoria() {
+        Long golesLocal = local.getGolesPorPartido();
+        Long golesVisitante = visitante.getGolesPorPartido();
+    
+        
+        long golesAFavorLocal = local.getGolesAFavor() + golesLocal;
+        long golesEnContraLocal = local.getGolesEnContra() + golesVisitante;
+    
+        long golesAFavorVisitante = visitante.getGolesAFavor() + golesVisitante;
+        long golesEnContraVisitante = visitante.getGolesEnContra() + golesLocal;
+    
+        
+        local.setGolesAFavor(golesAFavorLocal);
+        local.setGolesEnContra(golesEnContraLocal);
+    
+        visitante.setGolesAFavor(golesAFavorVisitante);
+        visitante.setGolesEnContra(golesEnContraVisitante);
+    
+        
+        if (golesLocal > golesVisitante) {
+            return local;
+        } else if (golesLocal < golesVisitante) {
+            return visitante;
+        } else {
+            //si empatan se hace llamada recursiva
+            local.setGolesAFavor(golesAFavorLocal - golesLocal);
+            local.setGolesEnContra(golesEnContraLocal - golesVisitante);
+    
+            visitante.setGolesAFavor(golesAFavorVisitante - golesVisitante);
+            visitante.setGolesEnContra(golesEnContraVisitante - golesLocal);
+    
+            return eliminatoria();
+        }
+    }
+    
 
 }
