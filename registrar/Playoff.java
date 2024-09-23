@@ -32,7 +32,7 @@ public class Playoff {
     public void almacenarParticipantes(Liga liga, int numDeParticipantes) {
         Map<Equipo, Integer> tempMap = new LinkedHashMap<>();
         int i = 0;
-        liga.puntosPorEquipo.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
+        //liga.puntosPorEquipo.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
         for (Map.Entry<Equipo, Integer> entrada : liga.puntosPorEquipo.entrySet()) {
             if (i == numDeParticipantes) {
                 break;
