@@ -80,6 +80,12 @@ public class Playoff {
             // Determina el ganador global
            System.out.println("Global ");
            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
+           if(local.getGolesAFavor() > visitante.getGolesAFavor()){
+                ganadores.add(local);
+           }
+           else{
+                ganadores.add(visitante);
+           }
         }
     }
 
