@@ -63,7 +63,11 @@ public class Playoff {
         int n = equipos.size();
         for (int i = 0; i < n / 2; i++) {
             Equipo local = equipos.get(i); // Primer puesto
+
             Equipo visitante = equipos.get(n - 1 - i); // Último puesto
+
+            local.setGolesAFavor(0);
+            visitante.setGolesAFavor(0);
 
             Partido partidoIda = new Partido(local, visitante);
             Equipo ganadorIda = partidoIda.eliminatoria();
