@@ -84,13 +84,17 @@ public class Playoff {
             if(local.getGolesAFavor() == visitante.getGolesAFavor()){
                 System.out.println("Tiempos extra");
                 ganadorVuelta = partidoVuelta.eliminatoria();
-                
+                ganadores.add(ganadorVuelta);
             }
-            
+            if(local.getGolesAFavor() > visitante.getGolesAFavor()){
+                ganadores.add(local);
+            }else{
+                ganadores.add(visitante);
+            }
             // Determina el ganador global
            System.out.println("Global ");
            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
-        
+            
         }
         return ganadores;
     }

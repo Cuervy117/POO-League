@@ -1,18 +1,18 @@
-1	America	0	13	4	12	17	-5	13
-2	Atlas	1	8	8	11	21	-10	11
-3	Atletico San Luis	12	5	0	32	14	18	41
-4	Cruz Azul	11	6	0	31	14	17	39
-5	Guadalajara	5	9	3	18	16	2	24
-6	Juarez	7	8	2	22	17	5	29
-7	Leon	1	5	11	8	18	-10	8
-8	Mazatlan	10	6	1	25	15	10	36
-9	Monterrey	3	8	6	12	18	-6	17
-10	Necaxa	3	6	8	10	16	-6	15
-11	Pachuca	1	6	10	8	18	-10	9
-12	Puebla	7	7	3	22	15	7	28
-13	Pumas	2	10	5	12	17	-5	16
-14	Queretaro	4	6	7	10	17	-7	18
-15	Santos	2	7	8	9	17	-8	13
-16	Tigres	6	6	5	11	10	1	24
-17	Tijuana	3	6	8	10	19	-9	15
-18	Toluca	11	6	0	31	15	16	39
+1	America	12	5	0	29	10	19	41
+2	Atlas	1	13	3	15	17	-2	16
+3	Atletico San Luis	2	9	6	11	16	-5	15
+4	Cruz Azul	3	8	6	8	11	-3	17
+5	Guadalajara	4	8	5	11	12	-1	20
+6	Juarez	3	6	8	11	16	-5	15
+7	Leon	5	5	7	8	11	-3	20
+8	Mazatlan	2	9	6	12	16	-4	15
+9	Monterrey	4	7	6	14	19	-5	19
+10	Necaxa	5	7	5	13	15	-2	22
+11	Pachuca	1	9	7	9	17	-8	12
+12	Puebla	8	6	3	20	16	4	30
+13	Pumas	0	11	6	11	20	-9	11
+14	Queretaro	5	5	7	16	18	-2	20
+15	Santos	12	5	0	32	15	17	41
+16	Tigres	8	7	2	26	18	8	31
+17	Tijuana	3	6	8	6	13	-7	15
+18	Toluca	7	10	0	22	14	8	31
