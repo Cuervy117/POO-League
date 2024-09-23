@@ -85,8 +85,14 @@ public class Partido {
     
         
         if (golesLocal > golesVisitante) {
+            System.out.println("Final");
+            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
+
             return local;
         } else if (golesLocal < golesVisitante) {
+            System.out.println("Final");
+            System.out.println(local.getNombre() + " " +local.getGolesAFavor() + " - "+ visitante.getGolesAFavor() + " " + visitante.getNombre());
+
             return visitante;
         } else {
             //si empatan se hace llamada recursiva
@@ -98,6 +104,7 @@ public class Partido {
     
             return eliminatoria();
         }
+        
     }
     
 
