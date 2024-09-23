@@ -6,14 +6,15 @@ import java.util.Map;
 
 public class Playoff {
     LinkedHashMap<Partido, Integer> partidosPorRonda;
-    List<Equipo> equipos;
+    Map<Equipo, Integer> lideresOrdenados;
 
     public Playoff(Liga liga){
         this.partidosPorRonda = new LinkedHashMap<>();
-        this.equipos = new ArrayList<>(liga.puntosPorEquipo.keySet()); 
+        this.lideresOrdenados = new LinkedHashMap<>(); 
     }
 
     public void almacenarParticipantes(Liga liga, int numDeParticipantes) {
+        List <Equipo> equipos = new ArrayList<>(liga.puntosPorEquipo.keySet());
         equipos.sort((e1, e2) -> {
             int puntos1 = liga.puntosPorEquipo.get(e1);
             int puntos2 = liga.puntosPorEquipo.get(e2);
@@ -32,8 +33,6 @@ public class Playoff {
             }
         });
     
-        
-        Map<Equipo, Integer> lideresOrdenados = new LinkedHashMap<>();
         for (int i = 0; i < numDeParticipantes && i < equipos.size(); i++) {
             Equipo equipo = equipos.get(i);
             lideresOrdenados.put(equipo, liga.puntosPorEquipo.get(equipo));
@@ -42,67 +41,64 @@ public class Playoff {
        
         System.out.println("Ya se guardaron");
         lideresOrdenados.forEach((e, j) -> System.out.println(e.getNombre() + " " + j));
-        equipos.addAll(lideresOrdenados.keySet());
     }
 
-    public void generarRondas(int numDeParticipantes ){
-        for(int i = 0; i < numDeParticipantes/2; i ++){
-            Partido ida = new Partido(equipos.get(i), equipos.get(numDeParticipantes-i-1));
-            partidosPorRonda.put(ida, numDeParticipantes/2 ); //si son cuartos, va a recibir la clave 4, de modo que si lelgase a ser semifinales, la clave es 2
-            Partido vuelta = new Partido(equipos.get(numDeParticipantes-i-1), equipos.get(i)); //es el partido con el local como visitante
-            partidosPorRonda.put(vuelta, numDeParticipantes/2);
+    public void simularPlayoffs() {
+        int ronda = 1; // 1 para octavos, 2 para cuartos, etc.
+        List<Equipo> equipos = new ArrayList<>(lideresOrdenados.keySet());
+
+        while (equipos.size() > 1) {
+            simularRonda(equipos, ronda);
+            ronda++;
+            equipos = obtenerGanadores(equipos);
         }
-        //ya están generadas las rondas
-        
+
+        if (equipos.size() == 1) {
+            System.out.println("Campeón: " + equipos.get(0).getNombre());
+        }
     }
 
+    private void simularRonda(List<Equipo> equipos, int ronda) {
+        List<Equipo> ganadores = new ArrayList<>();
 
-    public void simularRonda(int numDeParticipantes) {
-        // Resetea goles de todos los equipos antes de comenzar la ronda
-        resetearGoles();
-        ArrayList <Equipo> ganadores = new ArrayList<>();
+        int n = equipos.size();
+        for (int i = 0; i < n / 2; i++) {
+            Equipo local = equipos.get(i); // Primer puesto
+            Equipo visitante = equipos.get(n - 1 - i); // Último puesto
 
-        // Simular partidos de ida
-        for (int i = 0; i < equipos.size()/2; i ++) {
-            Equipo local = equipos.get(i);
-            Equipo visitante = equipos.get(equipos.size() - i -1);
             Partido partidoIda = new Partido(local, visitante);
-
-            // Lógica para la eliminatoria del partido de ida
             Equipo ganadorIda = partidoIda.eliminatoria();
-            partidosPorRonda.put(partidoIda, equipos.size()/2); // Guardar el partido de ida
+            partidosPorRonda.put(partidoIda, ronda); // Almacena el partido de ida
 
-            // Simular partido de vuelta
             Partido partidoVuelta = new Partido(visitante, local);
             Equipo ganadorVuelta = partidoVuelta.eliminatoria();
-            partidosPorRonda.put(partidoVuelta, equipos.size()/2); // Guardar el partido de vuelta
+            partidosPorRonda.put(partidoVuelta, ronda); // Almacena el partido de vuelta
 
-            if(local.getGolesAFavor() > visitante.getGolesAFavor()){
-                ganadores.add(local);
-
-            }else{
+            // Determina el ganador global
+            if (ganadorIda.equals(visitante)) {
                 ganadores.add(visitante);
+            } else {
+                ganadores.add(local);
             }
-
-        }
-        equipos = ganadores;
-        System.out.println("Los equipos que pasan a la siguiente ronda son: ");
-        equipos.forEach(e -> System.out.println(e.getNombre()));
-    }
-
-    private void resetearGoles() {
-        for (Equipo equipo : equipos) {
-            equipo.setGolesAFavor(0);
-            equipo.setGolesEnContra(0);
         }
     }
 
-    public void iniciarTorneo(int numDeParticipantes){
-        while(equipos.size() > 1){
-            simularRonda(equipos.size());
+    private List<Equipo> obtenerGanadores(List<Equipo> equipos) {
+        // Esta función debe retornar la lista de ganadores tras una ronda
+        List<Equipo> ganadores = new ArrayList<>();
+        for (int i = 0; i < equipos.size(); i += 2) {
+            // Asumiendo que los ganadores son los equipos que se pasan
+            ganadores.add(equipos.get(i)); // Ajusta esta lógica según la lógica de tu eliminatoria
         }
-        System.out.println("El ganador es: " + equipos.get(0).getNombre());
+        return ganadores;
     }
+
+    public LinkedHashMap<Partido, Integer> getPartidosPorRonda() {
+        return partidosPorRonda;
+    }
+
+
+
 }
     
     
