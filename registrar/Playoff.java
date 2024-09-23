@@ -98,6 +98,7 @@ public class Playoff {
         while(equipos.size() > 1){
             simularRonda(equipos.size());
         }
+        System.out.println("El ganador es: " + equipos.get(0));
     }
 }
     
