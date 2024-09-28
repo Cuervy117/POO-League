@@ -1,4 +1,4 @@
-package equipos;
+package Equipos;
 public class Jugador{
     private String nombre, posicion;
     private int edad, goles, agresividad, amonestaciones;

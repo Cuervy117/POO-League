@@ -1,4 +1,4 @@
-package equipos;
+package Equipos;
 import probabilidades.*;
 
 /**
