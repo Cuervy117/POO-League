@@ -8,6 +8,8 @@ public class Partido {
     int minutos = 90;
     private Equipo local;
     private Equipo visitante;
+    private long golesLocal;
+    private long golesVisitante;
 
     /**
      * Constructor para crear un partido con equipos local y visitante.
@@ -17,6 +19,8 @@ public class Partido {
     public Partido(Equipo local, Equipo visitante){
         this.local = local;
         this.visitante = visitante;
+        this.golesLocal = 0;
+        this.golesVisitante = 0;
     }
 
     /**
@@ -72,6 +76,14 @@ public class Partido {
         return visitante;
     }
 
+    public long getGolesLocal() {
+        return golesLocal;
+    }
+
+    public long getGolesVisitante() {
+        return golesVisitante;
+    }
+
     //endregion
 
     //region Métodos de clase
@@ -89,16 +101,17 @@ public class Partido {
      * @return 1 si gana el equipo local, 0 si empatan, -1 si gana el equipo visitante.
      */
     public int ganadorLocal(){
-        Long golesLocal = local.getGolesPorPartido(), golesVisitante = visitante.getGolesPorPartido();
+        this.golesLocal = local.getGolesPorPartido(); 
+        this.golesVisitante = visitante.getGolesPorPartido();
         local.setGolesAFavor(local.getGolesAFavor() + golesLocal);
         local.setGolesEnContra(local.getGolesEnContra() + golesVisitante);
 
         visitante.setGolesAFavor(visitante.getGolesAFavor() + golesVisitante);
         visitante.setGolesEnContra(visitante.getGolesEnContra() + golesLocal);
         
-        if(golesLocal > golesVisitante){
+        if(getGolesLocal() > getGolesVisitante()){
             return 1;
-        } else if(golesLocal.equals(golesVisitante)){
+        } else if(getGolesLocal() == getGolesVisitante()){
             return 0; // empate
         } else {
             return -1; // derrota local
@@ -146,5 +159,7 @@ public class Partido {
     }
 
     //endregion
+
+
 }
 

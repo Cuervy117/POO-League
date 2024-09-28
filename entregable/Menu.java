@@ -144,7 +144,17 @@ public class Menu {
             }
             case 4 -> {
                 System.out.println("Simular temporada");
-                liga.simularTemporada();
+                liga.simularTemporada(sc);
+                // Simular jornada por jornada
+                for (int i = 1; i < liga.getPuntosPorEquipo().size(); i++) {
+                    System.out.println("Jornada " + i + " :");
+                    liga.mostrarJornadas(i);
+                    
+                    System.out.println("Pulsa Enter para seguir simulando ...");
+                    sc.nextLine();
+                }
+
+
                 Archivo.escribirTablaGeneral(liga);
                 System.out.println("Temporada simulada. Consulte la tabla generada");
                 System.out.println("Pulsa Enter para continuar e iniciar Playoffs ...");

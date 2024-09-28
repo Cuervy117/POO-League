@@ -3,6 +3,7 @@ import Equipos.*;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
@@ -68,7 +69,10 @@ public class Liga {
     public void mostrarJornadas(Integer numeroJornada) {
         for (Entry<Partido, Integer> entrada : jornadas.entrySet()) {
             if (Objects.equals(jornadas.get(entrada.getKey()), numeroJornada)) {
-                System.out.println(entrada.getKey().mostrarPartido() + "\t" + entrada.getValue());
+                Equipo local = entrada.getKey().getLocal();
+                Equipo visitante = entrada.getKey().getVisitante();
+                Partido partido = entrada.getKey();
+                System.out.println(local.getNombre() + " " + partido.getGolesLocal() + " - " + partido.getGolesVisitante() + " " + visitante.getNombre());
             }
         }
     }
@@ -101,7 +105,7 @@ public class Liga {
     /**
      * Simula la temporada completa de la liga, actualizando los puntos y estadísticas de cada equipo.
      */
-    public void simularTemporada() {
+    public void simularTemporada(Scanner sc) {
         for (Entry<Partido, Integer> entrada : jornadas.entrySet()) {
             Partido partido = entrada.getKey();
             Equipo local = partido.getLocal();
@@ -109,8 +113,6 @@ public class Liga {
 
             int previosLocal = puntosPorEquipo.getOrDefault(local, 0);
             int previosVisitante = puntosPorEquipo.getOrDefault(visitante, 0);
-
-            System.out.println(local.getNombre() + " " + local.getGolesPorPartido() + " - " + visitante.getNombre() + " " + visitante.getGolesPorPartido());
 
             switch (partido.ganadorLocal()) {
                 case 0 -> {
@@ -136,6 +138,7 @@ public class Liga {
 
             local.setRendimiento(local.getVictorias(), local.getDerrotas());
             visitante.setRendimiento(visitante.getVictorias(), visitante.getDerrotas());
+
         }
         // para ordenar por puntos
     }
