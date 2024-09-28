@@ -1,0 +1,18 @@
+1	America	1	11	5	14	18	-4	14
+2	Atlas	8	6	3	25	18	7	30
+3	Atletico San Luis	10	7	0	28	16	12	37
+4	Cruz Azul	1	6	10	9	19	-10	9
+5	Guadalajara	3	8	6	11	15	-4	17
+6	Juarez	3	4	10	12	21	-9	13
+7	Leon	12	5	0	30	14	16	41
+8	Mazatlan	3	10	4	11	14	-3	19
+9	Monterrey	4	7	6	11	14	-3	19
+10	Necaxa	2	10	5	12	16	-4	16
+11	Pachuca	11	6	0	31	17	14	39
+12	Puebla	6	10	1	19	14	5	28
+13	Pumas	2	9	6	11	16	-5	15
+14	Queretaro	2	4	11	8	19	-11	10
+15	Santos	11	6	0	30	17	13	39
+16	Tigres	1	9	7	11	17	-6	12
+17	Tijuana	2	7	8	8	15	-7	13
+18	Toluca	6	5	6	10	11	-1	23
