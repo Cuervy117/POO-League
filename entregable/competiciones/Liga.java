@@ -191,7 +191,6 @@ public class Liga {
                     for (int b = 0; b < n / 2; b++) {
                         // prueba para almacenar en jornadas
                         jornadas.put(calendario[a][b], a + 1); // a representa el valor de la jornada disputada
-                        // calendario[a][b].mostrarPartido();
                     }
                 }
                 mostrarJornadas();

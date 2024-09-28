@@ -1,5 +1,5 @@
-import competiciones.*;
 import Equipos.*;
+import competiciones.*;
 import java.io.IOException;
 import java.util.Scanner;
 
