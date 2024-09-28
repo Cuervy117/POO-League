@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -13,6 +14,7 @@ public class Liga {
         this.puntosPorEquipo = new TreeMap<>((Equipo e1, Equipo e2) -> e1.getNombre().compareTo(e2.getNombre()) //el tree map va a estar ordenado inicialmente por orden alfabético
         );
         this.jornadas = new LinkedHashMap<>();
+        
     }
 
     public  void registrarEquipo(Equipo e){
