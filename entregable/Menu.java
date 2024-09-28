@@ -149,7 +149,7 @@ public class Menu {
                 for (int i = 1; i < liga.getPuntosPorEquipo().size(); i++) {
                     System.out.println("Jornada " + i + " :");
                     liga.mostrarJornadas(i);
-                    
+
                     System.out.println("Pulsa Enter para seguir simulando ...");
                     sc.nextLine();
                 }
@@ -161,8 +161,21 @@ public class Menu {
                 sc.nextLine();
                 System.out.println("Iniciar PlayOffs");
                 Playoff liguilla = new Playoff(liga);
-                liguilla.almacenarParticipantes(liga, 8);
-                liguilla.simularPlayoffs();
+
+                Integer numDeParticipantes = 8, ronda = numDeParticipantes;
+                liguilla.almacenarParticipantes(liga, numDeParticipantes);
+
+                liguilla.simularPlayoffs(sc);
+
+                /*for (int i = 0; i < 3; i++) {
+                    System.out.println("Eliminatorias: " );
+                    ronda /= 2;
+                    liguilla.mostrarRondas(ronda);
+
+
+                    System.out.println("Pulsa Enter para continuar ...");
+                    sc.nextLine();
+                }*/
                 System.out.println("Pulsa Enter para continuar ...");
                 sc.nextLine();
             }

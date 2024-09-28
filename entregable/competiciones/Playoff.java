@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * Clase que representa un torneo de playoffs.
@@ -60,12 +63,14 @@ public class Playoff {
     /**
      * Simula los playoffs hasta determinar el campeón.
      */
-    public void simularPlayoffs() {
+    public void simularPlayoffs(Scanner sc) {
         List<Equipo> equipos = new ArrayList<>(lideresOrdenados.keySet());
         List<Equipo> ganadores = new ArrayList<>();
 
         while (equipos.size() > 1) {
-            ganadores = simularRonda(equipos);
+            System.out.println("\tRonda: " +  equipos.size()/2);
+            
+            ganadores = simularRonda(equipos, sc);
             equipos = ganadores;
         }
 
@@ -79,29 +84,32 @@ public class Playoff {
      * @param equipos Lista de equipos que participan en la ronda.
      * @return Lista de equipos ganadores de la ronda.
      */
-    private List<Equipo> simularRonda(List<Equipo> equipos) {
+    private List<Equipo> simularRonda(List<Equipo> equipos, Scanner sc) {
         List<Equipo> ganadores = new ArrayList<>();
 
         int n = equipos.size();
         for (int i = 0; i < n / 2; i++) {
             Equipo local = equipos.get(i); // Primer puesto
             Equipo visitante = equipos.get(n - 1 - i); // Último puesto
-
             local.setGolesAFavor(0);
             visitante.setGolesAFavor(0);
 
             Partido partidoIda = new Partido(local, visitante);
-            int ganadorIda = partidoIda.ganadorLocal();
+            partidoIda.ganadorLocal();
             partidosPorRonda.put(partidoIda, equipos.size() / 2); // Almacena el partido de ida
-
+            System.out.println(local.getNombre() + " " + partidoIda.getGolesLocal()+ " - " + partidoIda.getGolesVisitante()+ " " + visitante.getNombre() );
             Partido partidoVuelta = new Partido(visitante, local);
-            int ganadorVuelta = partidoVuelta.ganadorLocal();
-            partidosPorRonda.put(partidoVuelta, equipos.size() / 2); // Almacena el partido de vuelta
+            partidoVuelta.ganadorLocal();
 
             if (local.getGolesAFavor() == visitante.getGolesAFavor()) {
                 Partido remontada = new Partido(visitante, local);
                 System.out.println("Tiempos extra");
                 remontada.eliminatoria();
+                partidosPorRonda.put(remontada, equipos.size()/2); //En caso de tener empate global
+            }else{
+                partidosPorRonda.put(partidoVuelta, equipos.size()/2); //Almacena el partido de vuelta
+                System.out.println(local.getNombre() + " " + partidoVuelta.getGolesLocal()+ " - " + partidoVuelta.getGolesVisitante()+ " " + visitante.getNombre() );
+
             }
             
             if (local.getGolesAFavor() > visitante.getGolesAFavor()) {
@@ -109,12 +117,27 @@ public class Playoff {
             } else {
                 ganadores.add(visitante);
             }
-
-            // Determina el ganador global
             System.out.println("====  Global ==== ");
             System.out.println(local.getNombre() + " " + local.getGolesAFavor() + " - " + visitante.getGolesAFavor() + " " + visitante.getNombre());
+            System.out.println("Presiona Enter para continuar...");
+            sc.nextLine();
+
         }
         return ganadores;
+    }
+
+        public void mostrarRondas(Integer numeroJornada) {
+
+        for (Entry<Partido, Integer> entrada : partidosPorRonda.entrySet()) {
+            if (Objects.equals(partidosPorRonda.get(entrada.getKey()), numeroJornada)) {
+                Equipo local = entrada.getKey().getLocal();
+                Equipo visitante = entrada.getKey().getVisitante();
+                Partido partido = entrada.getKey();
+                // Determina el ganador global
+                System.out.println(local.getNombre() + " " + partido.getGolesLocal() + " - " + partido.getGolesVisitante() + " " + visitante.getNombre());
+
+            }
+        }
     }
 
     //endregion

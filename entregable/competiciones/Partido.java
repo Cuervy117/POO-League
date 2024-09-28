@@ -123,8 +123,8 @@ public class Partido {
      * @return Equipo ganador.
      */
     public Equipo eliminatoria() {
-        Long golesLocal = local.getGolesPorPartido();
-        Long golesVisitante = visitante.getGolesPorPartido();
+        this.golesLocal = local.getGolesPorPartido();
+        this.golesVisitante = visitante.getGolesPorPartido();
     
         long golesAFavorLocal = local.getGolesAFavor() + golesLocal;
         long golesEnContraLocal = local.getGolesEnContra() + golesVisitante;
@@ -138,13 +138,13 @@ public class Partido {
         visitante.setGolesAFavor(golesAFavorVisitante);
         visitante.setGolesEnContra(golesEnContraVisitante);
     
-        if (golesLocal > golesVisitante) {
+        if (getGolesLocal() > getGolesVisitante()) {
             System.out.println("Final");
-            System.out.println(local.getNombre() + " " + golesLocal + " - "+ golesVisitante + " " + visitante.getNombre());
+            System.out.println(local.getNombre() + " " + getGolesLocal() + " - "+ getGolesVisitante() + " " + visitante.getNombre());
             return local;
-        } else if (golesLocal < golesVisitante) {
+        } else if (getGolesLocal() < getGolesVisitante()) {
             System.out.println("Final");
-            System.out.println(local.getNombre() + " " +golesLocal + " - "+ golesVisitante + " " + visitante.getNombre());
+            System.out.println(local.getNombre() + " " + getGolesLocal()  + " - "+ getGolesVisitante() + " " + visitante.getNombre());
             return visitante;
         } else {
             System.out.println("Tiempos extra");
