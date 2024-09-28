@@ -1,5 +1,5 @@
 package competiciones;
-import equipos.*;
+import Equipos.*;
 
 /**
  * Clase que representa un partido de fútbol entre dos equipos.

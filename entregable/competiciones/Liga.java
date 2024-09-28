@@ -1,5 +1,5 @@
 package competiciones;
-import equipos.*;
+import Equipos.*;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Objects;
