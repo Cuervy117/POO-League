@@ -53,16 +53,31 @@ public class Menu {
             }
 
             case 2 -> {
-                // editar equipos
                 liga.mostrarEquipos();
-                System.out.println("Que equipo quieres modificar");
-                String equipo = sc.nextLine();
-
-                System.out.println("Ingresa su nuevo nombre");
-                equipo = sc.nextLine();
-                Equipo e = new Equipo(equipo);
-                liga.registrarEquipo(e);
-
+                System.out.println("¿Qué equipo quieres modificar?");
+                String nombreEquipo = sc.nextLine();
+            
+                Equipo equipoAEliminar = null;
+                for (Equipo equipo : liga.getPuntosPorEquipo().keySet()) {
+                    if (equipo.getNombre().equals(nombreEquipo)) {
+                        equipoAEliminar = equipo;
+                        break;
+                    }
+                }
+            
+                if (equipoAEliminar != null) {
+                    liga.getPuntosPorEquipo().remove(equipoAEliminar);
+                    System.out.println("Equipo eliminado.");
+            
+                    System.out.println("Ingresa su nuevo nombre");
+                    String nuevoNombre = sc.nextLine();
+                    Equipo nuevoEquipo = new Equipo(nuevoNombre);
+                    liga.registrarEquipo(nuevoEquipo);
+                    System.out.println("Equipo registrado con el nuevo nombre.");
+                } else {
+                    System.out.println("Equipo no encontrado.");
+                }
+                Archivo.guardarEquipos(liga);
                 System.out.println("Pulsa Enter para continuar ...");
                 sc.nextLine();
             }

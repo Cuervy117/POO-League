@@ -108,7 +108,7 @@ public class Playoff {
                 partidosPorRonda.put(remontada, equipos.size()/2); //En caso de tener empate global
             }else{
                 partidosPorRonda.put(partidoVuelta, equipos.size()/2); //Almacena el partido de vuelta
-                System.out.println(local.getNombre() + " " + partidoVuelta.getGolesLocal()+ " - " + partidoVuelta.getGolesVisitante()+ " " + visitante.getNombre() );
+                System.out.println(visitante.getNombre() + " " + partidoVuelta.getGolesLocal()+ " - " + partidoVuelta.getGolesVisitante()+ " " + local.getNombre() );
 
             }
             

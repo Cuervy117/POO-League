@@ -1,13 +1,14 @@
-America	0
+America FC	0
 Atlas	0
 Atletico San Luis	0
+Chiapas	0
 Cruz Azul	0
 Guadalajara	0
 Juarez	0
 Leon	0
 Mazatlan	0
 Monterrey	0
-Necaxa 	0
+Necaxa	0
 Pachuca	0
 Puebla	0
 Pumas	0
@@ -16,3 +17,4 @@ Santos	0
 Tigres	0
 Tijuana	0
 Toluca	0
+Veracruz	0
