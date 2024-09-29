@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"Equipos","l":"Equipo"},{"p":"Equipos","l":"Jugador"},{"p":"competiciones","l":"Liga"},{"p":"competiciones","l":"Partido"},{"p":"competiciones","l":"Playoff"},{"p":"probabilidades","l":"ProbaGoles"}];updateSearchResults();
